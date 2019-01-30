@@ -1,3 +1,7 @@
+Link for contributing rules:
+[contributing.md](./contributing.md)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
