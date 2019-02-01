@@ -1,0 +1,33 @@
+
+.Test-button-size {
+  width: 90px;
+  height: 30px;
+  border-color: transparent;
+}
+
+.Disabled-button {
+  background-color: #d7d7d7;
+  color: white;
+  font-size: bold;
+
+}
+.Transparent-button {
+  background-color: #ffffff82;
+  color: gray;
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.Light-button {
+  background-color: #ffffff;
+  color: black ;
+  font-weight: bold;
+  border-color: black;
+}
+
+.Paypal-button {
+  border-color: black;
+}
+
+.Icon-paypal {
+}
