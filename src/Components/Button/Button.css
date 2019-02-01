@@ -1,33 +1,42 @@
-
 .Test-button-size {
-  width: 90px;
+  width: 150px;
   height: 30px;
   border-color: transparent;
 }
 
-.Disabled-button {
-  background-color: #d7d7d7;
-  color: white;
-  font-size: bold;
-
+.Test-button-size>p {
+  margin: 0px;
 }
+.Disabled-button {
+  opacity: 0.2;
+}
+
+.Checkout-button {
+  background-color: black;
+}
+
+.Checkout-button-text {
+  color: white;
+}
+
 .Transparent-button {
-  background-color: #ffffff82;
-  color: gray;
-  font-weight: bold;
+  background-color: var(--transparent);
   border-radius: 3px;
 }
 
+.Transparent-button-text {
+  color:gray;
+}
+
 .Light-button {
-  background-color: #ffffff;
-  color: black ;
-  font-weight: bold;
+  background-color: white;
   border-color: black;
 }
 
-.Paypal-button {
-  border-color: black;
+.Light-button-text {
+  color: gray;
 }
 
-.Icon-paypal {
+.Payment-button {
+  border-color: black;
 }
