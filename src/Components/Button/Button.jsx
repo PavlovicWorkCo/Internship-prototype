@@ -1,13 +1,14 @@
-import React from 'react';
-import PropTypes from 'prop-types';
 import './Button.css';
+import PropTypes from 'prop-types';
+import React from 'react';
+/* eslint-disable react/button-has-type */
 
 const Button = ({
-  className, buttonText, buttonIconURL, iconClassName, buttonTextClassName,
+  className, buttonText, buttonIcon, iconClassName, buttonTextClassName, onClick, buttonType,
 }) => (
-  <button type="button" className={className}>
+  <button type={buttonType} className={className} onClick={onClick}>
     {buttonText && <p className={buttonTextClassName}>{buttonText}</p>}
-    {buttonIconURL && <img alt="" className={iconClassName} src={buttonIconURL} />}
+    {buttonIcon && <img alt="" className={iconClassName} src={buttonIcon} />}
   </button>
 );
 
@@ -16,15 +17,19 @@ Button.defaultProps = {
   buttonText: null,
   className: null,
   iconClassName: null,
-  buttonIconURL: null,
+  buttonIcon: null,
+  onClick: null,
+  buttonType: 'submit',
 };
 
 Button.propTypes = {
   buttonTextClassName: PropTypes.string,
   buttonText: PropTypes.string,
-  buttonIconURL: PropTypes.string,
+  buttonIcon: PropTypes.string,
   className: PropTypes.string,
   iconClassName: PropTypes.string,
+  onClick: PropTypes.func,
+  buttonType: PropTypes.string,
 };
 
 export default Button;
