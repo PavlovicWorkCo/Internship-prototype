@@ -1,0 +1,42 @@
+.Test-button-size {
+  width: 150px;
+  height: 30px;
+  border-color: transparent;
+}
+
+.Test-button-size>p {
+  margin: 0px;
+}
+.Disabled-button {
+  opacity: 0.2;
+}
+
+.Checkout-button {
+  background-color: black;
+}
+
+.Checkout-button-text {
+  color: white;
+}
+
+.Transparent-button {
+  background-color: var(--transparent);
+  border-radius: 3px;
+}
+
+.Transparent-button-text {
+  color:gray;
+}
+
+.Light-button {
+  background-color: white;
+  border-color: black;
+}
+
+.Light-button-text {
+  color: gray;
+}
+
+.Payment-button {
+  border-color: black;
+}
