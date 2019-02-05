@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import isValidIcon from '../../../public/icons/isValidInput.svg';
 import notValidIcon from '../../../public/icons/notValidInput.svg';
+import Validator from '../../helper/Validator';
+import togglePasswordIcon from '../../../public/icons/togglePasswordVisibility.svg';
 
 class Input extends React.PureComponent {
   constructor(props) {
@@ -13,6 +15,12 @@ class Input extends React.PureComponent {
       inputAcceptable: null,
       inputCheckerType: inputCheckerType, // eslint-disable-line object-shorthand
     };
+  }
+
+  setInputValue(value) {
+    this.setState({
+      inputValue: value,
+    });
   }
 
   inputCheck(inputValue) {
@@ -34,53 +42,55 @@ class Input extends React.PureComponent {
   }
 
   validateEmail(email) {
-    if (typeof email === 'string' && email.includes('@')) {
+    this.setState({
+      inputAcceptable: Validator.validateEmail(email),
+      inputWarningText: Validator.validateEmail(email) ? null : 'Please enter a valid email',
+    });
+    if (!Validator.validateEmail(email)) {
       this.setState({
-        inputAcceptable: true,
-      });
-    } else {
-      this.setState({
-        inputAcceptable: false,
-        inputWarningText: 'no @ in email',
+        inputWarningText: 'email format not valid',
       });
     }
   }
 
   validatePassword(password) {
-    if (typeof password === 'string' && /\d/.test(password)) {
-      this.setState({
-        inputAcceptable: true,
-      });
-    } else {
-      this.setState({
-        inputAcceptable: false,
-        inputWarningText: "password doesn't contain number",
-      });
-    }
+    this.setState({
+      inputAcceptable: Validator.validatePassword(password),
+      inputWarningText: Validator.validatePassword(password) ? null : 'Password must contain at least eight characters, one letter and one number.',
+    });
   }
 
-  passwordToggle() {
-    alert('toggle'); // eslint-disable-line
+  passwordToggle(e) {
+    if (e.target.previousSibling.type === 'text') {
+      e.target.previousSibling.type = 'password';
+    } else {
+      e.target.previousSibling.type = 'text';
+    }
   }
 
   render() {
     const {
-      inputCheckerType,
-      inputName,
-      inputType,
+      containerClassName,
       inputClassName,
-      inputIcon,
-      iconClassName,
+      inputCheckerType,
+      inputLabeled,
+      inputLabelClassName,
+      inputName,
       placeholderText,
+      inputType,
+      togglePasswordVisibility,
+      toggleIconClassName,
     } = this.props;
 
     const {
+      inputValue,
       inputAcceptable,
       inputWarningText,
     } = this.state;
     return (
-      <div className="Input-big-container">
-        <div className="Input-container">
+      <div className={containerClassName}>
+        {inputLabeled && inputValue && <p className={inputLabelClassName}>{placeholderText}</p>}
+        <div className="Input-inner-container">
           {inputCheckerType && inputAcceptable === true && <img alt="" className="Valid-input-icon" src={isValidIcon} />}
           {inputCheckerType && inputAcceptable === false && <img alt="" className="Not-valid-input-icon" src={notValidIcon} />}
           <input
@@ -89,9 +99,9 @@ class Input extends React.PureComponent {
             placeholder={placeholderText}
             className={inputClassName}
             onBlur={e => this.inputCheck(e.target.value)}
+            onChange={e => this.setInputValue(e.target.value)}
           />
-          {/* eslint-disable-next-line */}
-          {inputIcon && <img onClick={()=> this.passwordToggle()} alt="" className={iconClassName} src={inputIcon} />}
+          {togglePasswordVisibility && <img onClick={(e)=> this.passwordToggle(e)} alt="" className={toggleIconClassName} src={togglePasswordIcon} />} {/* eslint-disable-line */}
         </div>
         {inputWarningText && inputAcceptable === false && <p className="Input-warning-text">{inputWarningText}</p>}
       </div>
@@ -100,23 +110,30 @@ class Input extends React.PureComponent {
 }
 
 Input.defaultProps = {
+  containerClassName: 'Input-big-container',
+  inputClassName: null,
   inputCheckerType: null,
-  inputIcon: null,
-  iconClassName: null,
+  inputLabeled: false,
+  inputLabelClassName: null,
   inputName: null,
   placeholderText: null,
-  inputClassName: null,
   inputType: 'text',
+  togglePasswordVisibility: false,
+  toggleIconClassName: null,
 };
 
 Input.propTypes = {
+  containerClassName: PropTypes.string,
+  inputClassName: PropTypes.string,
   inputCheckerType: PropTypes.string,
-  inputIcon: PropTypes.string,
-  iconClassName: PropTypes.string,
+  inputLabeled: PropTypes.bool,
+  inputLabelClassName: PropTypes.string,
   inputName: PropTypes.string,
   placeholderText: PropTypes.string,
-  inputClassName: PropTypes.string,
   inputType: PropTypes.string,
+  togglePasswordVisibility: PropTypes.bool,
+  toggleIconClassName: PropTypes.string,
+
 };
 
 export default Input;
