@@ -1,0 +1,39 @@
+.Input-big-container {
+  margin: 10px 0 0 50px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+.Input-container {
+  width: 100%;
+  position: relative;
+}
+
+.Test-input-style {
+  left: 0px;
+  height: 20px;
+  outline: none;
+  width: 100%;
+}
+
+.Password-input, .Email-input {
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+
+.Input-warning-text {
+  margin: 0px;
+}
+
+.Not-valid-input-icon, .Valid-input-icon {
+  position: absolute;
+  left: -20px;
+  top: 5px;
+  right: 30px;
+}
+.Password-toggle-icon {
+  position: absolute;
+  right: 0px;
+  top: 5px;
+}

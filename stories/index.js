@@ -3,8 +3,9 @@ import '../src/index.css';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '../src/Components/Button/Button';
-import paypalIcon from '../public/Icons/image.svg';
-
+import paypalIcon from '../public/icons/image.svg';
+import Input from '../src/Components/Input/Input';
+import togglePasswordVisibility from '../public/icons/togglePasswordVisibility.svg';
 
 storiesOf('Button', module)
   .add('Disabled', () => (
@@ -38,5 +39,30 @@ storiesOf('Button', module)
       buttonText="Checkout now"
       buttonTextClassName="Checkout-button-text"
       className="Checkout-button Test-button-size"
+    />
+  ));
+
+storiesOf('Input', module)
+  .add('Standard', () => (
+    <Input
+      placeholderText="standard"
+      inputClassName="Test-input-style Test-standard-input"
+    />
+  ))
+  .add('Email', () => (
+    <Input
+      placeholderText="email"
+      inputCheckerType="email"
+      inputClassName="Email-input Test-input-style"
+    />
+  ))
+  .add('Password', () => (
+    <Input
+      inputType="password"
+      placeholderText="password"
+      inputCheckerType="password"
+      inputClassName="Password-input Test-input-style"
+      inputIcon={togglePasswordVisibility}
+      iconClassName="Password-toggle-icon"
     />
   ));
