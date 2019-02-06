@@ -48,14 +48,14 @@ storiesOf('Input', module)
       inputLabeled
       inputLabelClassName="Standard-input-label"
       placeholderText="Address"
-      inputClassName="Test-input-style Test-standard-input"
+      inputClassName="Default-input Test-standard-input"
     />
   ))
   .add('Email', () => (
     <Input
       placeholderText="Email"
       inputCheckerType="email"
-      inputClassName="Email-input Test-input-style"
+      inputClassName="Email-input Default-input"
     />
   ))
   .add('Password', () => (
@@ -63,9 +63,8 @@ storiesOf('Input', module)
       inputType="password"
       placeholderText="Password"
       inputCheckerType="password"
-      inputClassName="Password-input Test-input-style"
+      inputClassName="Password-input Default-input"
       togglePasswordVisibility
-      toggleButtonClassName="Password-toggle-button"
       toggleIconClassName="Password-toggle-icon"
     />
   ));

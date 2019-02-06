@@ -1,4 +1,5 @@
 import './Input.css';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSVG from 'react-svg';
@@ -51,17 +52,12 @@ class Input extends React.PureComponent {
       inputAcceptable: Validator.validateEmail(email),
       inputWarningText: Validator.validateEmail(email) ? null : 'Please enter a valid email',
     });
-    if (!Validator.validateEmail(email)) {
-      this.setState({
-        inputWarningText: 'email format not valid',
-      });
-    }
   }
 
   validatePassword(password) {
     this.setState({
       inputAcceptable: Validator.validatePassword(password),
-      inputWarningText: Validator.validatePassword(password) ? null : 'Password must contain at least eight characters, one letter and one number.',
+      inputWarningText: Validator.validatePassword(password) ? null : 'Password must contain at least eight characters.',
     });
   }
 
@@ -95,6 +91,11 @@ class Input extends React.PureComponent {
       inputAcceptable,
       inputWarningText,
     } = this.state;
+
+    const toggleIconClass = classNames({
+      Active: inputValue,
+      [`${toggleIconClassName}`]: true,
+    });
     return (
       <div className={containerClassName}>
         {inputLabeled && inputValue && <p className={inputLabelClassName}>{placeholderText}</p>}
@@ -112,7 +113,7 @@ class Input extends React.PureComponent {
           />
           {togglePasswordVisibility && (
             <button type="button" onClick={() => this.passwordToggle()} className={toggleButtonClassName}>
-              <ReactSVG src={TogglePasswordIcon} svgClassName={toggleIconClassName} />
+              <ReactSVG src={TogglePasswordIcon} svgClassName={toggleIconClass} />
             </button>
           )}
         </div>
@@ -123,8 +124,8 @@ class Input extends React.PureComponent {
 }
 
 Input.defaultProps = {
-  containerClassName: 'Input-big-container',
-  inputClassName: null,
+  containerClassName: 'Default-input-big-container',
+  inputClassName: 'Default-input',
   inputCheckerType: null,
   inputLabeled: false,
   inputLabelClassName: null,
@@ -132,7 +133,7 @@ Input.defaultProps = {
   placeholderText: null,
   inputType: 'text',
   togglePasswordVisibility: false,
-  toggleButtonClassName: null,
+  toggleButtonClassName: 'Password-toggle-button',
   toggleIconClassName: null,
 };
 

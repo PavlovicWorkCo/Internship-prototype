@@ -1,19 +1,23 @@
-.Input-big-container {
+.Default-input-big-container {
   margin: 20px 0 0 30px;
   width: 300px;
   display: flex;
   flex-direction: column;
 }
+
 .Input-inner-container {
   width: 100%;
   position: relative;
 }
 
-.Test-input-style {
+.Default-input {
   left: 0px;
   height: 20px;
   outline: none;
-  width: 100%;
+  width: calc(100% - 20px);
+  padding-right: 30px;
+  border: none;
+  border-bottom: 1px solid gray;
 }
 
 .Test-input-style:focus::placeholder {
@@ -26,30 +30,35 @@
   top: 0px;
 }
 
-.Password-input, .Email-input {
-  border: none;
-  border-bottom: 1px solid gray;
-}
-
 
 .Input-warning-text {
   margin: 0px;
+  color: red;
+  font-size: 12px;
 }
 
 .Not-valid-input-icon, .Valid-input-icon {
   position: absolute;
   left: -20px;
-  top: 5px;
+  top: 6px;
   right: 30px;
 }
+
 .Password-toggle-button {
   position: absolute;
-  right: 0px;
+  right: -5px;
   bottom: 2px;
   border: none;
   outline: none;
-  background-color: var(--transparent);
+  padding-left: 0px;
+  padding-right: 0px;
 }
 
 .Password-toggle-icon {
+  fill: black;
+  opacity: 0.3;
+}
+
+.Password-toggle-icon.Active {
+  opacity: 1;
 }
