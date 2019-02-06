@@ -1,0 +1,65 @@
+.Default-input-big-container {
+  margin: 20px 0 0 30px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+}
+
+.Input-inner-container {
+  width: 100%;
+  position: relative;
+}
+
+.Default-input {
+  left: 0px;
+  height: 20px;
+  outline: none;
+  width: calc(100% - 20px);
+  padding-right: 30px;
+  border: none;
+  border-bottom: 1px solid gray;
+}
+
+.Test-input-style:focus::placeholder {
+  color: black;
+}
+
+.Standard-input-label {
+  margin: 0px;
+  position: absolute;
+  top: 0px;
+}
+
+
+.Input-warning-text {
+  margin: 0px;
+  color: red;
+  font-size: 12px;
+}
+
+.Not-valid-input-icon, .Valid-input-icon {
+  position: absolute;
+  left: -20px;
+  top: 6px;
+  right: 30px;
+}
+
+.Password-toggle-button {
+  position: absolute;
+  right: -5px;
+  bottom: 2px;
+  border: none;
+  outline: none;
+  padding-left: 0px;
+  padding-right: 0px;
+  background-color: var(--transparent);
+}
+
+.Password-toggle-icon {
+  fill: black;
+  opacity: 0.3;
+}
+
+.Password-toggle-icon.Active {
+  opacity: 1;
+}

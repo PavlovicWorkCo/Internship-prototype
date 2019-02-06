@@ -1,6 +1,7 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Input from './Components/Input/Input';
 
 /* eslint-disable */
 class App extends React.PureComponent {
@@ -20,6 +21,15 @@ class App extends React.PureComponent {
           >
             Learn React
           </a>
+          <Input
+            inputType="password"
+            placeholderText="Password"
+            inputCheckerType="password"
+            inputClassName="Password-input Test-input-style"
+            togglePasswordVisibility
+            toggleButtonClassName="Password-toggle-button"
+            toggleIconClassName="Password-toggle-icon"
+          />
         </header>
       </div>
     );
