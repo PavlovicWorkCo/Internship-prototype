@@ -3,7 +3,7 @@ import '../src/index.css';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '../src/Components/Button/Button';
-import paypalIcon from '../public/icons/image.svg';
+import paypalIcon from '../src/assets/icons/paypalButton.svg';
 import Input from '../src/Components/Input/Input';
 
 
@@ -65,6 +65,7 @@ storiesOf('Input', module)
       inputCheckerType="password"
       inputClassName="Password-input Test-input-style"
       togglePasswordVisibility
+      toggleButtonClassName="Password-toggle-button"
       toggleIconClassName="Password-toggle-icon"
     />
   ));

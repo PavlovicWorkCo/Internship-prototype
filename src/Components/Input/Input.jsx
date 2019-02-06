@@ -1,10 +1,12 @@
 import './Input.css';
 import PropTypes from 'prop-types';
 import React from 'react';
-import isValidIcon from '../../../public/icons/isValidInput.svg';
-import notValidIcon from '../../../public/icons/notValidInput.svg';
+import ReactSVG from 'react-svg';
+import isValidIcon from '../../assets/icons/isValidInput.svg';
+import notValidIcon from '../../assets/icons/notValidInput.svg';
 import Validator from '../../helper/Validator';
-import togglePasswordIcon from '../../../public/icons/togglePasswordVisibility.svg';
+import TogglePasswordIcon from '../../assets/icons/togglePasswordVisibility.svg';
+
 
 class Input extends React.PureComponent {
   constructor(props) {
@@ -15,11 +17,14 @@ class Input extends React.PureComponent {
       inputAcceptable: null,
       inputCheckerType: inputCheckerType, // eslint-disable-line object-shorthand
     };
+    this.passwordInput = React.createRef();
   }
 
   setInputValue(value) {
     this.setState({
       inputValue: value,
+      inputWarningText: null,
+      inputAcceptable: null,
     });
   }
 
@@ -60,11 +65,13 @@ class Input extends React.PureComponent {
     });
   }
 
-  passwordToggle(e) {
-    if (e.target.previousSibling.type === 'text') {
-      e.target.previousSibling.type = 'password';
+  passwordToggle() {
+    const { inputValue } = this.state;
+    if (!inputValue) return;
+    if (this.passwordInput.current.type === 'text') {
+      this.passwordInput.current.type = 'password';
     } else {
-      e.target.previousSibling.type = 'text';
+      this.passwordInput.current.type = 'text';
     }
   }
 
@@ -79,6 +86,7 @@ class Input extends React.PureComponent {
       placeholderText,
       inputType,
       togglePasswordVisibility,
+      toggleButtonClassName,
       toggleIconClassName,
     } = this.props;
 
@@ -100,8 +108,13 @@ class Input extends React.PureComponent {
             className={inputClassName}
             onBlur={e => this.inputCheck(e.target.value)}
             onChange={e => this.setInputValue(e.target.value)}
+            ref={this.passwordInput}
           />
-          {togglePasswordVisibility && <img onClick={(e)=> this.passwordToggle(e)} alt="" className={toggleIconClassName} src={togglePasswordIcon} />} {/* eslint-disable-line */}
+          {togglePasswordVisibility && (
+            <button type="button" onClick={() => this.passwordToggle()} className={toggleButtonClassName}>
+              <ReactSVG src={TogglePasswordIcon} svgClassName={toggleIconClassName} />
+            </button>
+          )}
         </div>
         {inputWarningText && inputAcceptable === false && <p className="Input-warning-text">{inputWarningText}</p>}
       </div>
@@ -119,6 +132,7 @@ Input.defaultProps = {
   placeholderText: null,
   inputType: 'text',
   togglePasswordVisibility: false,
+  toggleButtonClassName: null,
   toggleIconClassName: null,
 };
 
@@ -132,6 +146,7 @@ Input.propTypes = {
   placeholderText: PropTypes.string,
   inputType: PropTypes.string,
   togglePasswordVisibility: PropTypes.bool,
+  toggleButtonClassName: PropTypes.string,
   toggleIconClassName: PropTypes.string,
 
 };
