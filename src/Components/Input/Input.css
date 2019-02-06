@@ -52,6 +52,7 @@
   outline: none;
   padding-left: 0px;
   padding-right: 0px;
+  background-color: var(--transparent);
 }
 
 .Password-toggle-icon {
