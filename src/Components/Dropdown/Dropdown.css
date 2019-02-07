@@ -1,0 +1,72 @@
+.Dropdown-container {
+  display: flex;
+  flex-flow: column;
+  width: 300px;
+  margin-top: 20px;
+  margin-left: 10px;
+  height: var(--dropdown_height);
+  justify-content: flex-end;
+  position: relative;
+}
+
+.Dropdown-button-test {
+  width: 100%;
+  border: none;
+  border-bottom: 1.5px solid var(--transparent_black);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
+  padding-right: 3px;
+  font-size: 14px;
+}
+
+.Dropdown-button-test>p {
+  padding-left: 1px;
+  margin: 6px 0px 10px 0px;
+}
+
+.Dropdown-placeholder {
+  color: gray;
+  font-size: 14px;
+}
+
+.Dropdown-options-container-test {
+  flex-direction: column;
+  border: 1px solid var(--transparent_black);;
+  border-top: none;
+  position: absolute;
+  top: var(--dropdown_height);
+  width: 298px;
+  max-height: 150px;
+  overflow: scroll;
+}
+
+.Dropdown-label {
+  margin: 0px;
+  font-size: 12px;
+  color: gray;
+}
+
+.Dropdown-button-test, .Dropdown-options-button-test {
+  background: none;
+  outline: none;
+}
+
+.Dropdown-options-button-test {
+  width: 100%;
+  border: none;
+  height: 30px;
+  padding: 0px;
+}
+
+.Dropdown-options-button-test>p {
+  margin: 0px;
+  text-align: left;
+  padding-left: 1px;
+  font-size: 12px;
+}
+
+.Dropdown-options-button-test:hover {
+  background: lightgray;
+}

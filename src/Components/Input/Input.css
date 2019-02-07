@@ -17,7 +17,7 @@
   width: calc(100% - 20px);
   padding-right: 30px;
   border: none;
-  border-bottom: 1px solid gray;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 .Test-input-style:focus::placeholder {
