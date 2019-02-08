@@ -1,36 +1,20 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
-import Input from './Components/Input/Input';
+import { Switch, Route, Link } from 'react-router-dom';
+import Page1 from './views/page1';
+import Page2 from './views/page2';
 
-/* eslint-disable */
+/* eslint-disable react/prefer-stateless-function, react/jsx-filename-extension */
 class App extends React.PureComponent {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={ logo } className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <Input
-            inputType="password"
-            placeholderText="Password"
-            inputCheckerType="password"
-            inputClassName="Password-input Test-input-style"
-            togglePasswordVisibility
-            toggleButtonClassName="Password-toggle-button"
-            toggleIconClassName="Password-toggle-icon"
-          />
-        </header>
+        <Link to="/page1"> Go to page1 </Link>
+        <Link to="/page2"> Go to page2 </Link>
+        <Switch>
+          <Route exact path="/page1" component={Page1} />
+          <Route exact path="/page2" component={Page2} />
+        </Switch>
       </div>
     );
   }
