@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import Button from '../src/Components/Button/Button';
 import paypalIcon from '../src/assets/icons/paypalButton.svg';
 import Input from '../src/Components/Input/Input';
+import Dropdown from '../src/Components/Dropdown/Dropdown';
 
 
 storiesOf('Button', module)
@@ -66,5 +67,18 @@ storiesOf('Input', module)
       inputClassName="Password-input Default-input"
       togglePasswordVisibility
       toggleIconClassName="Password-toggle-icon"
+    />
+  ));
+
+
+storiesOf('Dropdown', module)
+  .add('Test', () => (
+    <Dropdown
+      dropdownButtonClass="Dropdown-button-test"
+      optionsButtonClass="Dropdown-options-button-test"
+      dropdownLabeled
+      dropdownOptions={['50km', '100km', '200km', '300km', '150km', '1010km', '2100km', '2323km']}
+      placeholderText="Radius"
+      dropdownOptionsContainerClass="Dropdown-options-container-test"
     />
   ));
