@@ -39,7 +39,7 @@
   top: var(--dropdown_height);
   width: 298px;
   max-height: 150px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 
 .Dropdown-label {

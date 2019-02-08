@@ -7,18 +7,21 @@ import dropdownArrowIcon from '../../assets/icons/dropdownArrow.svg';
 class Dropdown extends React.PureComponent {
   constructor(props) {
     super(props);
-    const { defaultSelected } = this.props;
     this.state = {
-      dropdownSelected: defaultSelected,
+      dropdownSelected: props.defaultSelected,
       dropdownShowing: false,
     };
   }
 
   setDropdownValue(option) {
-    this.setState({
-      dropdownSelected: option,
-    });
-    this.toggleDropdown();
+    this.setState(
+      {
+        dropdownSelected: option,
+      },
+      () => {
+        this.toggleDropdown();
+      },
+    );
   }
 
   toggleDropdown() {
