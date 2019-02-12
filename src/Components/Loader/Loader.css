@@ -1,0 +1,87 @@
+.Loader {
+  margin: 0 auto;
+  margin-top: 50px;
+  border-radius: 15px;
+  width: 150px;
+  height: 50px;
+  background-color: black;
+  align-items: center;
+  border: 1px solid gray;
+  display: flex;
+  justify-content: space-around;
+}
+
+@keyframes loaderdot1 {
+  0% {background-color: gray;}
+  15% {background-color: gray;}
+  22.5%  {background-color: white;}
+  30% {background-color: gray}
+  65% {background-color: gray;}
+  72.5% {background-color: white;}
+  80% {background-color: gray;}
+  100% {background-color: gray;}
+}
+
+@keyframes loaderdot2 {
+  0% {background-color: gray;}
+  17.5% {background-color: gray;}
+  25% {background-color: white;}
+  32.5% {background-color: gray;}
+  62.5% {background-color: gray;}
+  70% {background-color: white;}
+  77.5% {background-color: gray;}
+  100% {background-color: gray;}
+}
+@keyframes loaderdot3 {
+  0% {background-color: gray;}
+  20% {background-color: gray;}
+  27.5% {background-color: white;}
+  35% {background-color: gray;}
+  60% {background-color: gray;}
+  67.5% {background-color: white;}
+  75% {background-color: gray;}
+  100% {background-color: gray;}
+}
+
+@keyframes loaderdot4 {
+  0% {background-color: gray;}
+  22.5% {background-color: gray;}
+  30% {background-color: white;}
+  37.5% {background-color: gray;}
+  57.5% {background-color: gray;}
+  65% {background-color: white;}
+  72.5% {background-color: gray;}
+  100% {background-color: gray;}
+}
+@keyframes loaderdot5 {
+  0% {background-color: gray;}
+  27% {background-color: gray;}
+  32.5% {background-color: white;}
+  40% {background-color: gray;}
+  55% {background-color: gray;}
+  62.5% {background-color: white;}
+  70% {background-color: gray;}
+  100% {background-color: gray;}
+}
+
+.Loader-dot {
+  background-color: gray;
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+}
+.Loader-dot1 {
+  animation: loaderdot1 1.2s linear 0s infinite;
+}
+.Loader-dot2 {
+  animation: loaderdot2 1.2s linear 0s infinite;
+}
+.Loader-dot3 {
+  animation: loaderdot3 1.2s linear 0s infinite;
+}
+.Loader-dot4 {
+  animation: loaderdot4 1.2s linear 0s infinite;
+}
+.Loader-dot5 {
+  animation: loaderdot5 1.2s linear 0s infinite;
+}

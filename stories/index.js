@@ -6,6 +6,7 @@ import Button from '../src/Components/Button/Button';
 import paypalIcon from '../src/assets/icons/paypalButton.svg';
 import Input from '../src/Components/Input/Input';
 import Dropdown from '../src/Components/Dropdown/Dropdown';
+import Loader from '../src/Components/Loader/Loader';
 
 
 storiesOf('Button', module)
@@ -80,5 +81,10 @@ storiesOf('Dropdown', module)
       dropdownOptions={['50km', '100km', '200km', '300km', '150km', '1010km', '2100km', '2323km']}
       placeholderText="Radius"
       dropdownOptionsContainerClass="Dropdown-options-container-test"
+    />
+  ));
+storiesOf('Loader', module)
+  .add('Loader', () => (
+    <Loader
     />
   ));
