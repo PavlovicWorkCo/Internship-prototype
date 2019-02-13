@@ -6,7 +6,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { createStore, applyMiddleware } from 'redux';
 import reducers from './redux/reducer';
-import AppContainer from './App';
+import AppContainer from './container/App/App';
 import * as serviceWorker from './serviceWorker';
 /* eslint-disable react/jsx-filename-extension, no-undef */
 

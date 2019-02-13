@@ -2,11 +2,11 @@
 import '../src/index.css';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import Button from '../src/Components/Button/Button';
+import Button from '../src/components/Button/Button';
 import paypalIcon from '../src/assets/icons/paypalButton.svg';
-import Input from '../src/Components/Input/Input';
-import Dropdown from '../src/Components/Dropdown/Dropdown';
-import Loader from '../src/Components/Loader/Loader';
+import Input from '../src/components/Input/Input';
+import Dropdown from '../src/components/Dropdown/Dropdown';
+import Loader from '../src/components/Loader/Loader';
 
 
 storiesOf('Button', module)
@@ -85,6 +85,5 @@ storiesOf('Dropdown', module)
   ));
 storiesOf('Loader', module)
   .add('Loader', () => (
-    <Loader
-    />
+    <Loader />
   ));

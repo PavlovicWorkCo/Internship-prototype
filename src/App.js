@@ -1,51 +1,35 @@
 import React from 'react';
 import './App.css';
-import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { Switch, Route } from 'react-router-dom';
-import Loader from './Components/Loader/Loader';
-import BagPageContainer from './views/bagPage';
-import { fetchBag } from './redux/actions';
+import Loader from './components/Loader/Loader';
+import BagPage from './views/Bag';
 
-
-/* eslint-disable react/prefer-stateless-function, react/jsx-filename-extension,
-react/destructuring-assignment, react/prop-types */
+/* eslint-disable react/jsx-filename-extension,
+react/destructuring-assignment */
 class App extends React.PureComponent {
-  componentDidMount() {
-    this.props.fetchBag();
-  }
-
   render() {
     return (
       <div className="App">
-        {this.props.isFetching ? <Loader />
-          : (
-            <Redirect to="/bag" />
-          )
-        }
+        {this.props.isFetching && <Loader />}
+        {!this.props.isFetching && this.props.pathname !== '/bag' && <Redirect to="/bag" />}
         <Switch>
-          <Route exact path="/bag" component={BagPageContainer} />
+          <Route exact path="/bag" component={BagPage} />
         </Switch>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => { // eslint-disable-line arrow-body-style
-  return {
-    isFetching: state.bagItems.isFetching,
-  };
-};
-const mapDispatchToProps = (dispatch) => { // eslint-disable-line arrow-body-style
-  return {
-
-    fetchBag: () => {
-      dispatch(fetchBag());
-    },
-  };
+App.defaultProps = {
+  isFetching: null,
+  pathname: null,
 };
 
-const AppContainer = connect(mapStateToProps, mapDispatchToProps)(App);
+App.propTypes = {
+  isFetching: PropTypes.bool,
+  pathname: PropTypes.string,
+};
 
-
-export default AppContainer;
+export default App;
