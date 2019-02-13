@@ -1,23 +1,35 @@
 import React from 'react';
 import './App.css';
-import { Switch, Route, Link } from 'react-router-dom';
-import Page1 from './views/page1';
-import Page2 from './views/page2';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
+import { Switch, Route } from 'react-router-dom';
+import Loader from './components/Loader/Loader';
+import BagPage from './views/Bag';
 
-/* eslint-disable react/prefer-stateless-function, react/jsx-filename-extension */
+/* eslint-disable react/jsx-filename-extension,
+react/destructuring-assignment */
 class App extends React.PureComponent {
   render() {
     return (
       <div className="App">
-        <Link to="/page1"> Go to page1 </Link>
-        <Link to="/page2"> Go to page2 </Link>
+        {this.props.isFetching && <Loader />}
+        {!this.props.isFetching && this.props.pathname !== '/bag' && <Redirect to="/bag" />}
         <Switch>
-          <Route exact path="/page1" component={Page1} />
-          <Route exact path="/page2" component={Page2} />
+          <Route exact path="/bag" component={BagPage} />
         </Switch>
       </div>
     );
   }
 }
+
+App.defaultProps = {
+  isFetching: null,
+  pathname: null,
+};
+
+App.propTypes = {
+  isFetching: PropTypes.bool,
+  pathname: PropTypes.string,
+};
 
 export default App;
