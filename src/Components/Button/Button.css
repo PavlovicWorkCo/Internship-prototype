@@ -31,6 +31,7 @@
 .Light-button {
   background-color: white;
   border-color: black;
+  border: 1px solid black;
 }
 
 .Light-button-text {
@@ -39,4 +40,5 @@
 
 .Payment-button {
   border-color: black;
+  border: 1px solid black;
 }

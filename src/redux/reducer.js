@@ -3,6 +3,7 @@ import {
   BAG_REQUEST,
   BAG_ERROR,
   BAG_SUCCESS,
+  BAG_DELETE_ITEM,
 } from './actions';
 
 const bagItems = (
@@ -28,7 +29,13 @@ const bagItems = (
         isFetching: false,
         errorMessage: 'Something went wrong. Please try again later',
       });
-    case 'BAG_ERROR':
+    case BAG_DELETE_ITEM:
+      return Object.assign({}, state, {
+        items: [
+          ...state.items.slice(0, action.index),
+          ...state.items.slice(action.index + 1),
+        ],
+      });
     default:
       return state;
   }

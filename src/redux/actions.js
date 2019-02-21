@@ -1,6 +1,7 @@
 export const BAG_REQUEST = 'BAG_REQUEST';
 export const BAG_SUCCESS = 'BAG_SUCCESS';
 export const BAG_ERROR = 'BAG_ERROR';
+export const BAG_DELETE_ITEM = 'BAG_DELETE_ITEM';
 
 function requestBag() {
   return {
@@ -29,5 +30,12 @@ export function fetchBag() {
       .then(response => response.json())
       .then(json => dispatch(receiveBag(json)))
       .catch(() => dispatch(requestFailed()));
+  };
+}
+
+export function deleteBagItem(index) {
+  return {
+    type: BAG_DELETE_ITEM,
+    index: index, //eslint-disable-line
   };
 }

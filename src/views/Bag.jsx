@@ -1,6 +1,7 @@
 import React from 'react';
-import BagContainer from '../container/Bag/Bag';
 /* eslint-disable */
+import BagContainer from '../container/Bag/Bag';
+
 class BagPage extends React.PureComponent {
   render() {
     return (

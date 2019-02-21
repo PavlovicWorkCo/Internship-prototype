@@ -1,3 +1,6 @@
 :root {
-  --dropdown_height: 80px;
+  --dropdown_standard_height: 80px;
+  --dropdown_bag_item_height: 40px;
+  --dropdown_bag_item_position_top: calc(var(--dropdown_bag_item_height) + 1px);
+  --bag_item_dropdown_options_max_height: 102px;
 }
