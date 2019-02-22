@@ -3,16 +3,13 @@ import '../src/index.css';
 import '../src/App';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { createStore, applyMiddleware } from 'redux';
-import reducers from '../src/redux/reducer';
 import Button from '../src/components/Button/Button';
 import paypalIcon from '../src/assets/icons/paypalButton.svg';
 import Input from '../src/components/Input/Input';
 import Dropdown from '../src/components/Dropdown/Dropdown';
 import Loader from '../src/components/Loader/Loader';
-import BagContainer from '../src/container/Bag/Bag';
+import Bag from '../src/components/Bag/Bag';
+import BagData from './Bag-data';
 
 
 storiesOf('Button', module)
@@ -97,11 +94,6 @@ storiesOf('Loader', module)
   ));
 
 storiesOf('BagContainer', module)
-  .addDecorator(story => (
-    <Provider store={createStore(reducers, applyMiddleware(thunk))}>
-      {story()}
-    </Provider>
-  ))
   .add('BagContainer', () => (
-    <BagContainer />
+    <Bag bagItemsInfo={BagData} />
   ));
