@@ -54,31 +54,30 @@ class Dropdown extends React.PureComponent {
       dropdownOptionContentClass,
     } = this.props;
 
-    const dropdownOptionsButtons = dropdownOptions && (
-      dropdownOptions.map(option => (
-        <button
-          type="button"
-          className={optionsButtonClass}
-          onClick={() => this.setDropdownValue(option)}
-        >
-          {dropdownWithColor ? (
-            <React.Fragment>
-              <div
-                className={colorPreviewClass}
-                style={{ backgroundColor: option.color_code }}
-              />
-              <p className={dropdownOptionContentClass}>
-                {option.color_name}
-              </p>
-            </React.Fragment>
-          ) : (
-            <p className={dropdownOptionContentClass}>{option}</p>
-          ) }
-        </button>
-      ))
-    );
     return (
-      dropdownOptionsButtons
+      dropdownOptions && (
+        dropdownOptions.map(option => (
+          <button
+            type="button"
+            className={optionsButtonClass}
+            onClick={() => this.setDropdownValue(option)}
+          >
+            {dropdownWithColor ? (
+              <React.Fragment>
+                <div
+                  className={colorPreviewClass}
+                  style={{ backgroundColor: option.color_code }}
+                />
+                <p className={dropdownOptionContentClass}>
+                  {option.color_name}
+                </p>
+              </React.Fragment>
+            ) : (
+              <p className={dropdownOptionContentClass}>{option}</p>
+            ) }
+          </button>
+        ))
+      )
     );
   }
 
@@ -184,8 +183,8 @@ Dropdown.propTypes = {
   optionsButtonClass: PropTypes.string,
   dropdownLabeled: PropTypes.bool,
   labelClass: PropTypes.string,
-  dropdownOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.element])),
-  defaultSelected: PropTypes.string,
+  dropdownOptions: PropTypes.arrayOf(PropTypes.oneOfType([PropTypes.string, PropTypes.object])),
+  defaultSelected: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   placeholderText: PropTypes.string,
   dropdownArrowIconClass: PropTypes.string,
   dropdownArrowVisible: PropTypes.bool,

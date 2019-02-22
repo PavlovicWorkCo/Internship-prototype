@@ -2,4 +2,7 @@
   --transparent: #ffffff00;
   --transparent_black: rgba(0, 0, 0, 0.1);
   --bagitem_dropdown_border: #D8D8D8;
+  --bagitem_picture_background: #F2F2F2;
+  --bagitem_bottom_border: rgba(229, 229, 229, 0.4);
+  --bagitem_box_shadow: rgba(229, 229, 229, 0.2);
 }
