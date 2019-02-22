@@ -1,5 +1,6 @@
 /* eslint-disable no-alert, react/jsx-filename-extension, import/no-extraneous-dependencies */
 import '../src/index.css';
+import '../src/App';
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import Button from '../src/components/Button/Button';
@@ -7,6 +8,8 @@ import paypalIcon from '../src/assets/icons/paypalButton.svg';
 import Input from '../src/components/Input/Input';
 import Dropdown from '../src/components/Dropdown/Dropdown';
 import Loader from '../src/components/Loader/Loader';
+import Bag from '../src/components/Bag/Bag';
+import BagData from './Bag-data';
 
 
 storiesOf('Button', module)
@@ -23,7 +26,6 @@ storiesOf('Button', module)
   .add('Transparent', () => (
     <Button
       buttonText="Log in"
-      onClick={() => alert('Log in')} // eslint-disable-line no-undef
       buttonTextClassName="Transparent-button-text"
       className="Transparent-button Test-button-size"
     />
@@ -31,7 +33,6 @@ storiesOf('Button', module)
   .add('Payment', () => (
     <Button
       buttonIcon={paypalIcon}
-      onClick={() => alert('Go to payment.')} // eslint-disable-line no-undef
       iconClassName="Icon-paypal"
       className="Payment-button Test-button-size"
     />
@@ -75,15 +76,24 @@ storiesOf('Input', module)
 storiesOf('Dropdown', module)
   .add('Test', () => (
     <Dropdown
+      dropdownContainerClass="Dropdown-container-test"
       dropdownButtonClass="Dropdown-button-test"
       optionsButtonClass="Dropdown-options-button-test"
       dropdownLabeled
       dropdownOptions={['50km', '100km', '200km', '300km', '150km', '1010km', '2100km', '2323km']}
       placeholderText="Radius"
       dropdownOptionsContainerClass="Dropdown-options-container-test"
+      dropdownArrowIconClass="Dropdown-arrow-icon-test"
+      dropdownArrowVisible
+      dropdownType="standalone-dropdown"
     />
   ));
 storiesOf('Loader', module)
   .add('Loader', () => (
     <Loader />
+  ));
+
+storiesOf('BagContainer', module)
+  .add('BagContainer', () => (
+    <Bag bagItemsInfo={BagData} />
   ));

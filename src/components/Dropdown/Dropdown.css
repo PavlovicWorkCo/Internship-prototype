@@ -1,10 +1,10 @@
-.Dropdown-container {
+.Dropdown-container-test {
   display: flex;
   flex-flow: column;
   width: 300px;
   margin-top: 20px;
   margin-left: 10px;
-  height: var(--dropdown_height);
+  height: var(--dropdown_standard_height);
   justify-content: flex-end;
   position: relative;
 }
@@ -21,7 +21,7 @@
   font-size: 14px;
 }
 
-.Dropdown-button-test>p {
+.Dropdown-button-test>div, .Dropdown-placeholder {
   padding-left: 1px;
   margin: 6px 0px 10px 0px;
 }
@@ -36,7 +36,7 @@
   border: 1px solid var(--transparent_black);;
   border-top: none;
   position: absolute;
-  top: var(--dropdown_height);
+  top: var(--dropdown_standard_height);
   width: 298px;
   max-height: 150px;
   overflow-y: scroll;
@@ -58,9 +58,11 @@
   border: none;
   height: 30px;
   padding: 0px;
+  padding-left: 2px;
+  text-align: left;
 }
 
-.Dropdown-options-button-test>p {
+.Dropdown-options-button-test>div {
   margin: 0px;
   text-align: left;
   padding-left: 1px;
