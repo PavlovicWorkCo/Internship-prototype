@@ -1,0 +1,39 @@
+.Bag-labels-container {
+  width: 781px;
+  justify-content: space-between;
+  display: flex;
+  border-bottom: 1px solid black;
+  font-size: 14px;
+  margin-top: 40px;
+  padding-bottom: 15px;
+}
+
+.Number-of-items-label {
+  width: 360px;
+}
+
+.Bag-item-color-label {
+  width: 128px;
+  position: relative;
+  right: 25px;
+}
+
+.Bag-item-size-label {
+  width: 62px;
+}
+
+.Bag-item-quantity-label {
+  margin-left: 10px;
+  width: 52px;
+}
+
+.Bag-item-color-label,
+.Bag-item-size-label,
+.Bag-item-quantity-label {
+  display: flex;
+  justify-content: center;
+}
+
+.Bag-item-price-label {
+  margin-left: 15px;
+}

@@ -1,0 +1,33 @@
+.Bag-container {
+  margin-left: 30px;
+}
+
+.Bag-navi-container {
+  display: flex;
+  justify-content: space-between;
+  width: 781px;
+}
+
+.Back-to-addition-link {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  padding-left: 0px;
+  font-size: 20px;
+}
+
+.Back-to-addition-link:hover {
+  text-decoration: underline;
+}
+
+.Back-to-addition-arrow {
+  transform: rotate(90deg);
+  margin-right: 10px;
+}
+
+.Log-in-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 120px;
+  color: grey;
+}

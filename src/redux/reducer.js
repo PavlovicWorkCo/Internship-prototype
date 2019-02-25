@@ -8,7 +8,7 @@ import {
 
 const bagItems = (
   state = {
-    isFetching: false,
+    isFetching: null,
     items: [],
     errorMessage: null,
   }, action,

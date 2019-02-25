@@ -28,10 +28,12 @@ class BagItem extends React.PureComponent {
     return (
       <div className="Bag-item-outer-container">
         <div className={`Bag-item-inner-container ${sizeVersion}`}>
-          <div className={`Bag-item-picture-container ${sizeVersion}`}>
-            <img alt="" className="Bag-item-picture" src={itemPicture} />
+          <div className="Bag-item-picture-and-name-container">
+            <div className={`Bag-item-picture-container ${sizeVersion}`}>
+              <img alt="" className="Bag-item-picture" src={itemPicture} />
+            </div>
+            <p className={`Bag-item-name ${sizeVersion}`}>{itemName}</p>
           </div>
-          <p className={`Bag-item-name ${sizeVersion}`}>{itemName}</p>
           <Dropdown
             dropdownContainerClass="Bag-item-dropdown-container Color-dropdown-container"
             dropdownButtonClass="Bag-item-color-container"

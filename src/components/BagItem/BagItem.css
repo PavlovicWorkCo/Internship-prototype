@@ -1,7 +1,6 @@
 .Bag-item-outer-container {
   display: inline-flex;
   align-items: center;
-  margin-left: 10px;
 }
 
 .Bag-item-inner-container {
@@ -15,6 +14,12 @@
 
 .Bag-item-inner-container.Many-items-version {
   box-shadow: 0px 4px 2px 0 var(--bagitem_box_shadow);
+}
+
+.Bag-item-picture-and-name-container {
+  display: flex;
+  align-items: center;
+  width: 360px;
 }
 
 .Bag-item-picture-container.Few-items-version {
@@ -41,6 +46,7 @@
 
 .Bag-item-name {
   font-size: 15px;
+  margin-left: 20px;
   text-align: left;
 }
 
