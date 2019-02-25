@@ -21,7 +21,11 @@
 
 .Transparent-button {
   background-color: var(--transparent);
-  border-radius: 3px;
+  padding: 2px;
+}
+
+.Transparent-button:hover {
+  text-decoration: underline;
 }
 
 .Transparent-button-text {

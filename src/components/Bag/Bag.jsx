@@ -1,6 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import BagItem from '../BagItem/BagItem';
+import BagLabelsContainer from '../BagLabelsContainer/BagLabelsContainer';
+import './Bag.css';
+import Button from '../Button/Button';
+import dropdownArrowIcon from '../../assets/icons/dropdownArrow.svg';
 
 const Bag = (props) => {
   const { bagItemsInfo, deleteBagItem } = props;
@@ -21,7 +25,32 @@ const Bag = (props) => {
   ));
 
   return (
-    <div>{bagItems}</div>
+    <div className="Bag-container">
+      <div className="Bag-navi-container">
+        <a className="Back-to-addition-link" href="/">
+          <img
+            alt=""
+            src={dropdownArrowIcon}
+            className="Back-to-addition-arrow"
+          />
+          ADDITION ELLE
+        </a>
+        <div className="Log-in-buttons-container">
+          <Button
+            className="Transparent-button Log-in-button"
+            buttonText="Log in"
+            buttonTextClassName="Log-in-button-text"
+          />
+          <Button
+            className="Transparent-button Register-button"
+            buttonText="Register"
+            buttonTextClassName="Register-button-text"
+          />
+        </div>
+      </div>
+      <BagLabelsContainer numberOfItems={bagItemsInfo.length} />
+      {bagItems}
+    </div>
   );
 };
 
