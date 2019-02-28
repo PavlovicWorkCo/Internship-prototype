@@ -66,6 +66,10 @@
   border: none;
 }
 
+.No-border .Bag-item-size-container {
+  cursor: default;
+}
+
 .Bag-item-dropdown-container {
   position: relative;
   height: var(--dropdown_bag_item_height);

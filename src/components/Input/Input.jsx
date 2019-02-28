@@ -18,7 +18,13 @@ class Input extends React.PureComponent {
       inputAcceptable: null,
       inputCheckerType: inputCheckerType, // eslint-disable-line object-shorthand
     };
-    this.passwordInput = React.createRef();
+    this.inputRef = React.createRef();
+  }
+
+  onInputBlur(e) {
+    const { onBlur } = this.props;
+    this.inputCheck(e.target.value);
+    onBlur(e);
   }
 
   setInputValue(value) {
@@ -66,10 +72,10 @@ class Input extends React.PureComponent {
   passwordToggle() {
     const { inputValue } = this.state;
     if (!inputValue) return;
-    if (this.passwordInput.current.type === 'text') {
-      this.passwordInput.current.type = 'password';
+    if (this.inputRef.current.type === 'text') {
+      this.inputRef.current.type = 'password';
     } else {
-      this.passwordInput.current.type = 'text';
+      this.inputRef.current.type = 'text';
     }
   }
 
@@ -86,6 +92,7 @@ class Input extends React.PureComponent {
       togglePasswordVisibility,
       toggleButtonClassName,
       toggleIconClassName,
+      onFocus,
     } = this.props;
 
     const {
@@ -109,9 +116,10 @@ class Input extends React.PureComponent {
             name={inputName}
             placeholder={placeholderText}
             className={inputClassName}
-            onBlur={e => this.inputCheck(e.target.value)}
+            onFocus={onFocus}
+            onBlur={e => this.onInputBlur(e)}
             onChange={e => this.setInputValue(e.target.value)}
-            ref={this.passwordInput}
+            ref={this.inputRef}
           />
           {togglePasswordVisibility && (
             <button type="button" onClick={() => this.passwordToggle()} className={toggleButtonClassName}>
@@ -138,6 +146,8 @@ Input.defaultProps = {
   toggleButtonClassName: 'Password-toggle-button',
   toggleIconClassName: null,
   onChange: null,
+  onFocus: null,
+  onBlur: null,
 };
 
 Input.propTypes = {
@@ -153,6 +163,8 @@ Input.propTypes = {
   toggleButtonClassName: PropTypes.string,
   toggleIconClassName: PropTypes.string,
   onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  onBlur: PropTypes.func,
 
 };
 

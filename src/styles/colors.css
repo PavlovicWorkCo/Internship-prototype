@@ -6,4 +6,6 @@
   --bagitem_bottom_border: rgba(229, 229, 229, 0.4);
   --bagitem_box_shadow: rgba(229, 229, 229, 0.2);
   --bill_summary_background: #FCFCFC;
+  --bill_summary_border: rgb(238, 238, 238);
+  --bill_summary_transparent_border: rgba(238, 238, 238, 0.3);
 }

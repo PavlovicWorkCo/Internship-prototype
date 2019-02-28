@@ -5,8 +5,6 @@ import './BillSummary.css';
 import Button from '../Button/Button';
 import expandArrow from '../../assets/icons/dropdownArrow.svg';
 import xDeleteIcon from '../../assets/icons/x-delete.svg';
-import paypalIcon from '../../assets/icons/paypalButton.svg';
-import applePayButton from '../../assets/icons/applePayButton.svg';
 import BillSummaryForm from '../BillSummaryForm/BillSummaryForm';
 import RadioInput from '../RadioInput/RadioInput';
 
@@ -30,6 +28,7 @@ class BillSummary extends React.PureComponent {
       taxGSTRate: null,
       taxPSTRate: null,
       pickupInStore: false,
+      focusedFormId: null,
     };
   }
 
@@ -54,6 +53,18 @@ class BillSummary extends React.PureComponent {
     || (prevState.promoCodeSubmitted !== promoCodeSubmitted)) {
       this.calculateTotalCost();
     }
+  }
+
+  onBillSummaryInputFocus(formId) {
+    this.setState({
+      focusedFormId: formId,
+    });
+  }
+
+  onBillSummaryInputBlur() {
+    this.setState({
+      focusedFormId: null,
+    });
   }
 
   onPostalCodeChange(inputValue) {
@@ -101,6 +112,7 @@ class BillSummary extends React.PureComponent {
         taxGSTRate: this.defaultGSTRate,
         taxPSTRate: this.defaultPSTRate,
       });
+      document.activeElement.blur();
     } else {
       this.setState({
         postalCodeIsInvalid: true,
@@ -117,6 +129,13 @@ class BillSummary extends React.PureComponent {
       promoDiscount: this.defaultDiscountPercentage,
       promoCodeFormIsShowing: false,
     });
+    document.activeElement.blur();
+  }
+
+  removePromoCode() {
+    this.setState({
+      promoCodeSubmitted: null,
+    });
   }
 
   toggleTaxEstimationVisibility() {
@@ -124,19 +143,21 @@ class BillSummary extends React.PureComponent {
     this.setState({
       promoCodeFormIsShowing: false,
       taxEstimateIsShowing: !taxEstimateIsShowing,
-      postalCode: null,
-      promoCode: null,
     });
   }
 
   togglePromoCodeFormVisibility() {
-    const { promoCodeFormIsShowing } = this.state;
-    this.setState({
-      taxEstimateIsShowing: false,
-      promoCodeFormIsShowing: !promoCodeFormIsShowing,
-      postalCode: null,
-      promoCode: null,
-    });
+    const { promoCodeFormIsShowing, postalCodeSubmitted } = this.state;
+    if (postalCodeSubmitted) {
+      this.setState({
+        promoCodeFormIsShowing: !promoCodeFormIsShowing,
+      });
+    } else {
+      this.setState({
+        taxEstimateIsShowing: false,
+        promoCodeFormIsShowing: !promoCodeFormIsShowing,
+      });
+    }
   }
 
   calculateTotalCost() {
@@ -175,8 +196,9 @@ class BillSummary extends React.PureComponent {
 
   renderTaxEstimateContainer() {
     const {
-      taxEstimateIsShowing, postalCodeSubmitted, postalCodeIsInvalid, postalCode,
+      taxEstimateIsShowing, postalCodeSubmitted, postalCodeIsInvalid, postalCode, focusedFormId,
     } = this.state;
+    const formId = 'postal-code-form';
     const arrowIconClass = classNames({
       Active: taxEstimateIsShowing,
       'Estimate-tax-expand-icon': true,
@@ -190,6 +212,8 @@ class BillSummary extends React.PureComponent {
       Expanded: taxEstimateIsShowing,
       Collapsed: taxEstimateIsShowing === false,
       'Estimate-tax-container': true,
+      Faded: (focusedFormId !== formId) && focusedFormId,
+
     });
     const postalCodeFormContainerClass = classNames({
       'Postal-code-form-container': true,
@@ -209,7 +233,7 @@ class BillSummary extends React.PureComponent {
           && (
             <BillSummaryForm
               formContainerClassName={postalCodeFormContainerClass}
-              formId="postal-code-form"
+              formId={formId}
               onSubmit={e => this.submitPostalCode(e)}
               inputPlaceholderText="Postal Code"
               inputClassName="Postal-code-input Default-input"
@@ -217,10 +241,12 @@ class BillSummary extends React.PureComponent {
               onInputChange={inputValue => this.onPostalCodeChange(inputValue)}
               buttonText="Estimate"
               buttonClass={postalCodeButtonClass}
+              onInputFocus={() => this.onBillSummaryInputFocus(formId)}
+              onInputBlur={() => this.onBillSummaryInputBlur()}
             />
           )}
         {taxEstimateIsShowing && postalCodeIsInvalid && (
-          <div>Please enter a valid postal code</div>
+          <p className="Postal-code-warning">Please enter a valid postal code</p>
         )}
         {taxEstimateIsShowing && postalCodeSubmitted && this.renderTaxCost()}
       </div>
@@ -228,9 +254,10 @@ class BillSummary extends React.PureComponent {
   }
 
   renderShippingOptions() {
-    const { isShippingFree } = this.state;
+    const { isShippingFree, focusedFormId } = this.state;
+    const fadedClass = focusedFormId ? 'Faded' : 'Unfaded';
     return (
-      <div className="Shipping-options-container">
+      <div className={`Shipping-options-container ${fadedClass}`}>
         <p>Shipping options</p>
         <form onChange={() => this.onShippingOptionChange()} className="Shipping-form">
           <div>
@@ -259,9 +286,12 @@ class BillSummary extends React.PureComponent {
   }
 
   renderPromoCodeResult() {
-    const { promoDiscount, bagItemsCost, promoCodeSubmitted } = this.state;
+    const {
+      promoDiscount, bagItemsCost, promoCodeSubmitted, focusedFormId,
+    } = this.state;
+    const fadedClass = focusedFormId ? 'Faded' : 'Unfaded';
     return (
-      <div>
+      <div className={`Promo-code-active-container ${fadedClass}`}>
         <div className="Promo-code-discount-container">
           <p>
             {promoDiscount}
@@ -279,6 +309,7 @@ class BillSummary extends React.PureComponent {
           </p>
           <Button
             buttonIcon={xDeleteIcon}
+            onClick={() => this.removePromoCode()}
           />
         </div>
       </div>
@@ -286,7 +317,10 @@ class BillSummary extends React.PureComponent {
   }
 
   renderPromoCodeContainer() {
-    const { promoCodeFormIsShowing, promoCode } = this.state;
+    const {
+      promoCodeFormIsShowing, promoCode, focusedFormId, promoCodeSubmitted,
+    } = this.state;
+    const formId = 'promo-code-form';
     const arrowIconClass = classNames({
       Active: promoCodeFormIsShowing,
       'Estimate-tax-expand-icon': true,
@@ -300,16 +334,18 @@ class BillSummary extends React.PureComponent {
       Expanded: promoCodeFormIsShowing,
       Collapsed: promoCodeFormIsShowing === false,
       'Promo-code-container': true,
+      Faded: (focusedFormId !== formId) && focusedFormId,
     });
     const promoCodeFormContainerClass = classNames({
       'Promo-code-form-container': true,
       Visible: promoCodeFormIsShowing,
       Invisible: !promoCodeFormIsShowing,
+      'Display-none': promoCodeSubmitted && !promoCodeFormIsShowing,
     });
     return (
       <div className={promoCodeContainerClass}>
         <Button
-          className="Transparent-button Estimate-tax-button"
+          className="Transparent-button Promo-code-button"
           buttonText="Have a promo code?"
           buttonIcon={expandArrow}
           iconClassName={arrowIconClass}
@@ -317,7 +353,7 @@ class BillSummary extends React.PureComponent {
         />
         <BillSummaryForm
           formContainerClassName={promoCodeFormContainerClass}
-          formId="promo-code-form"
+          formId={formId}
           onSubmit={e => this.submitPromoCode(e)}
           inputPlaceholderText="Enter promo Code"
           inputClassName="Postal-code-input Default-input"
@@ -325,26 +361,8 @@ class BillSummary extends React.PureComponent {
           onInputChange={inputValue => this.onPromoCodeChange(inputValue)}
           buttonText="Apply"
           buttonClass={promoCodeButtonClass}
-        />
-      </div>
-    );
-  }
-
-  renderPaymentButtons() {
-    return (
-      <div className="Payment-buttons-container">
-        <Button
-          buttonIcon={paypalIcon}
-          className="Payment-button Bill-summary-button"
-        />
-        <Button
-          buttonText="Checkout now"
-          buttonTextClassName="Checkout-button-text"
-          className="Checkout-button Bill-summary-button"
-        />
-        <Button
-          buttonIcon={applePayButton}
-          className="Payment-button Bill-summary-button"
+          onInputFocus={() => this.onBillSummaryInputFocus(formId)}
+          onInputBlur={() => this.onBillSummaryInputBlur()}
         />
       </div>
     );
@@ -352,20 +370,22 @@ class BillSummary extends React.PureComponent {
 
   render() {
     const {
-      bagItemsCost, promoCodeSubmitted, isShippingFree, totalCost,
+      bagItemsCost, promoCodeSubmitted, isShippingFree,
+      totalCost, focusedFormId,
     } = this.state;
+    const fadedClass = focusedFormId ? 'Faded' : 'Unfaded';
 
     return (
       <div className="Bill-summary">
         <div>
-          <div className="Shipping-cost-status-container">
+          <div className={`Shipping-cost-status-container ${fadedClass}`}>
             <div className="Bullet-point-shipping-cost" />
             <p>
               {isShippingFree ? "YOU'VE QUALIFIED FOR FREE SHIPPING"
                 : `YOU'RE $${this.freeShippingThreshold - bagItemsCost} AWAY FROM FREE SHIPPING` }
             </p>
           </div>
-          <div className="Bill-summary-label-container">
+          <div className={`Bill-summary-label-container ${fadedClass}`}>
             <p className="Bill-summary-label">Summary</p>
           </div>
           {this.renderTaxEstimateContainer()}
@@ -375,10 +395,14 @@ class BillSummary extends React.PureComponent {
         </div>
         <div>
           <div className="Total-cost-container">
-            <p>Subtotal:</p>
-            <p>{`$${totalCost}`}</p>
+            <p className="Total-cost-label">Subtotal:</p>
+            <p className="Total-cost-value">{`$${totalCost}`}</p>
           </div>
-          {this.renderPaymentButtons()}
+          <Button
+            buttonText="Checkout now"
+            buttonTextClassName="Checkout-button-text"
+            className="Checkout-button Bill-summary-button"
+          />
         </div>
       </div>
     );

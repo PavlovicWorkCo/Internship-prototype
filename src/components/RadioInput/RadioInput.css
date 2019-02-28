@@ -5,7 +5,7 @@
   border-radius: 50%;
   padding: 2px;
   border: 1px solid black;
-  margin-right: 5px;
+  margin-right: 10px;
 }
 
 .Standard-radio-input-container {
@@ -13,7 +13,6 @@
   display: flex;
   align-items: center;
   padding: 2px;
-  margin-top: 8px;
 }
 .Standard-radio-input-container input:checked ~ .Standard-checkbox::after {
   content: "";

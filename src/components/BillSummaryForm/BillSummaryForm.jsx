@@ -14,7 +14,7 @@ class BillSummaryForm extends React.PureComponent {
   render() {
     const {
       formContainerClassName, formId, onSubmit, inputPlaceholderText, inputClassName,
-      inputContainerClassName, onInputChange, buttonText, buttonClass,
+      inputContainerClassName, onInputChange, buttonText, buttonClass, onInputFocus, onInputBlur,
     } = this.props;
     return (
       <div className={formContainerClassName}>
@@ -24,6 +24,8 @@ class BillSummaryForm extends React.PureComponent {
             inputClassName={inputClassName}
             containerClassName={inputContainerClassName}
             onChange={onInputChange}
+            onFocus={onInputFocus}
+            onBlur={onInputBlur}
           />
         </form>
         <Button
@@ -47,6 +49,8 @@ BillSummaryForm.defaultProps = {
   onInputChange: null,
   buttonText: null,
   buttonClass: null,
+  onInputFocus: null,
+  onInputBlur: null,
 };
 
 BillSummaryForm.propTypes = {
@@ -59,6 +63,8 @@ BillSummaryForm.propTypes = {
   onInputChange: PropTypes.func,
   buttonText: PropTypes.string,
   buttonClass: PropTypes.string,
+  onInputFocus: PropTypes.func,
+  onInputBlur: PropTypes.func,
 };
 
 export default BillSummaryForm;
