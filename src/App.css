@@ -39,6 +39,10 @@ button:hover {
   cursor: pointer;
 }
 
+input {
+  background-color: var(--transparent)
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);

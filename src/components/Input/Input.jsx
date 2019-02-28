@@ -22,11 +22,13 @@ class Input extends React.PureComponent {
   }
 
   setInputValue(value) {
+    const { onChange } = this.props;
     this.setState({
       inputValue: value,
       inputWarningText: null,
       inputAcceptable: null,
     });
+    onChange(value);
   }
 
   inputCheck(inputValue) {
@@ -135,6 +137,7 @@ Input.defaultProps = {
   togglePasswordVisibility: false,
   toggleButtonClassName: 'Password-toggle-button',
   toggleIconClassName: null,
+  onChange: null,
 };
 
 Input.propTypes = {
@@ -149,6 +152,7 @@ Input.propTypes = {
   togglePasswordVisibility: PropTypes.bool,
   toggleButtonClassName: PropTypes.string,
   toggleIconClassName: PropTypes.string,
+  onChange: PropTypes.func,
 
 };
 

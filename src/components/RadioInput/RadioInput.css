@@ -1,0 +1,38 @@
+.Standard-checkbox {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  padding: 2px;
+  border: 1px solid black;
+  margin-right: 5px;
+}
+
+.Standard-radio-input-container {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  margin-top: 8px;
+}
+.Standard-radio-input-container input:checked ~ .Standard-checkbox::after {
+  content: "";
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: black;
+}
+
+.Input-hidden {
+  display: none;
+}
+
+.Shipping-form>div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Ship-to-address-free {
+  color: red;
+}
