@@ -158,6 +158,11 @@
   padding: 0px 10px;
 }
 
+.Bag-item-no-size-choice-container {
+  width: 40px;
+  padding: 0px 10px;
+}
+
 .Bag-item-size-options-container {
   width: 60px;
   overflow-y: scroll;

@@ -127,7 +127,7 @@
 
 .Postal-code-warning {
   font-size: 12px;
-  color: #D11A0A;
+  color: var(--bill_summary_warning_red);
   letter-spacing: 0.3px;
   line-height: 22px;
 }
@@ -159,7 +159,7 @@
 .Ship-to-address-free {
   margin-right: 10px;
   font-size: 12px;
-  color: #D11A0A;
+  color: var(--bill_summary_warning_red);
   letter-spacing: 0.3px;
   text-align: right;
   line-height: 22px;
@@ -204,7 +204,7 @@
 }
 
 .Promo-code-discount-container {
-  color: #D11A0A;
+  color: var(--bill_summary_warning_red);
 }
 
 .Total-cost-container {

@@ -4,13 +4,6 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 class RadioInput extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-    this.passwordInput = React.createRef();
-  }
-
   render() {
     const {
       labelBeforeRadioButton, name, radioLabelText, inputId, isDefaultChecked,

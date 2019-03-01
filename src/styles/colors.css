@@ -8,4 +8,5 @@
   --bill_summary_background: #FCFCFC;
   --bill_summary_border: rgb(238, 238, 238);
   --bill_summary_transparent_border: rgba(238, 238, 238, 0.3);
+  --bill_summary_warning_red: #D11A0A;
 }

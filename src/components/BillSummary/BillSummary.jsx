@@ -55,15 +55,9 @@ class BillSummary extends React.PureComponent {
     }
   }
 
-  onBillSummaryInputFocus(formId) {
+  onBillSummaryInputFocusToggle(formId) {
     this.setState({
       focusedFormId: formId,
-    });
-  }
-
-  onBillSummaryInputBlur() {
-    this.setState({
-      focusedFormId: null,
     });
   }
 
@@ -113,6 +107,7 @@ class BillSummary extends React.PureComponent {
         taxPSTRate: this.defaultPSTRate,
       });
       document.activeElement.blur();
+      // blur the current input so the elements are not faded anymore after submit
     } else {
       this.setState({
         postalCodeIsInvalid: true,
@@ -149,6 +144,8 @@ class BillSummary extends React.PureComponent {
   togglePromoCodeFormVisibility() {
     const { promoCodeFormIsShowing, postalCodeSubmitted } = this.state;
     if (postalCodeSubmitted) {
+      // if the tax is already calculated,
+      // dont hide tax container when promo code container is toggled
       this.setState({
         promoCodeFormIsShowing: !promoCodeFormIsShowing,
       });
@@ -241,8 +238,8 @@ class BillSummary extends React.PureComponent {
               onInputChange={inputValue => this.onPostalCodeChange(inputValue)}
               buttonText="Estimate"
               buttonClass={postalCodeButtonClass}
-              onInputFocus={() => this.onBillSummaryInputFocus(formId)}
-              onInputBlur={() => this.onBillSummaryInputBlur()}
+              onInputFocus={() => this.onBillSummaryInputFocusToggle(formId)}
+              onInputBlur={() => this.onBillSummaryInputFocusToggle(null)}
             />
           )}
         {taxEstimateIsShowing && postalCodeIsInvalid && (
@@ -361,8 +358,8 @@ class BillSummary extends React.PureComponent {
           onInputChange={inputValue => this.onPromoCodeChange(inputValue)}
           buttonText="Apply"
           buttonClass={promoCodeButtonClass}
-          onInputFocus={() => this.onBillSummaryInputFocus(formId)}
-          onInputBlur={() => this.onBillSummaryInputBlur()}
+          onInputFocus={() => this.onBillSummaryInputFocusToggle(formId)}
+          onInputBlur={() => this.onBillSummaryInputFocusToggle(null)}
         />
       </div>
     );

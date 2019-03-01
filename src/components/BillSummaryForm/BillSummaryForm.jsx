@@ -5,12 +5,6 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 class BillSummaryForm extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-  }
-
   render() {
     const {
       formContainerClassName, formId, onSubmit, inputPlaceholderText, inputClassName,
