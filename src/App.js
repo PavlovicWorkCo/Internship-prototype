@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Redirect } from 'react-router'; // eslint-disable-line import/no-extraneous-dependencies
 import { Switch, Route } from 'react-router-dom';
 import Loader from './components/Loader/Loader';
-import BagPage from './views/Bag';
+import BagPage from './views/Bag/Bag';
 
 /* eslint-disable react/jsx-filename-extension,
 react/destructuring-assignment */

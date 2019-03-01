@@ -14,10 +14,13 @@
   left: 0px;
   height: 20px;
   outline: none;
-  width: calc(100% - 20px);
-  padding-right: 30px;
   border: none;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.Email-input,.Test-standard-input,.Password-input {
+  width: calc(100% - 20px);
+  padding-right: 30px;
 }
 
 .Test-input-style:focus::placeholder {

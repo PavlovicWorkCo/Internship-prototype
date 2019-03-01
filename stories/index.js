@@ -10,6 +10,7 @@ import Dropdown from '../src/components/Dropdown/Dropdown';
 import Loader from '../src/components/Loader/Loader';
 import Bag from '../src/components/Bag/Bag';
 import BagData from './Bag-data';
+import BillSummary from '../src/components/BillSummary/BillSummary';
 
 
 storiesOf('Button', module)
@@ -96,4 +97,9 @@ storiesOf('Loader', module)
 storiesOf('BagContainer', module)
   .add('BagContainer', () => (
     <Bag bagItemsInfo={BagData} />
+  ));
+
+storiesOf('BillSummary', module)
+  .add('BillSummary', () => (
+    <BillSummary bagItemsInfo={BagData} />
   ));

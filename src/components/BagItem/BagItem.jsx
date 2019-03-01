@@ -47,17 +47,23 @@ class BagItem extends React.PureComponent {
             dropdownArrowVisible
             dropdownWithColor
           />
-          <Dropdown
-            dropdownContainerClass="Bag-item-dropdown-container Size-dropdown-container"
-            dropdownButtonClass="Bag-item-size-container"
-            optionsButtonClass="Bag-item-size-options"
-            dropdownOptions={availableSizes}
-            defaultSelected={selectedSize}
-            dropdownOptionsContainerClass="Bag-item-size-options-container"
-            dropdownArrowIconClass="Dropdown-arrow-bag-item"
-            dropdownArrowVisible
-            noOptionsClass="No-border"
-          />
+          { availableSizes
+            ? (
+              <Dropdown
+                dropdownContainerClass="Bag-item-dropdown-container Size-dropdown-container"
+                dropdownButtonClass="Bag-item-size-container"
+                optionsButtonClass="Bag-item-size-options"
+                dropdownOptions={availableSizes}
+                defaultSelected={selectedSize}
+                dropdownOptionsContainerClass="Bag-item-size-options-container"
+                dropdownArrowIconClass="Dropdown-arrow-bag-item"
+                dropdownArrowVisible
+                noOptionsClass="No-border"
+              />
+            ) : (
+              <div className="Bag-item-no-size-choice-container">{selectedSize}</div>
+            )
+          }
           <Dropdown
             dropdownContainerClass="Bag-item-dropdown-container Quantity-dropdown-container"
             dropdownButtonClass="Bag-item-quantity-container"
