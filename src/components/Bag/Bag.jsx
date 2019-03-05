@@ -4,7 +4,6 @@ import BagItem from '../BagItem/BagItem';
 import BagLabelsContainer from '../BagLabelsContainer/BagLabelsContainer';
 import './Bag.css';
 import Button from '../Button/Button';
-import dropdownArrowIcon from '../../assets/icons/dropdownArrow.svg';
 
 const Bag = (props) => {
   const { bagItemsInfo, deleteBagItem } = props;
@@ -25,16 +24,8 @@ const Bag = (props) => {
   ));
 
   return (
-    <div className="Bag-container">
+    <React.Fragment>
       <div className="Bag-navi-container">
-        <a className="Back-to-addition-link" href="/">
-          <img
-            alt=""
-            src={dropdownArrowIcon}
-            className="Back-to-addition-arrow"
-          />
-          ADDITION ELLE
-        </a>
         <div className="Log-in-buttons-container">
           <Button
             className="Transparent-button Log-in-button"
@@ -50,7 +41,7 @@ const Bag = (props) => {
       </div>
       <BagLabelsContainer numberOfItems={bagItemsInfo.length} />
       {bagItems}
-    </div>
+    </React.Fragment>
   );
 };
 

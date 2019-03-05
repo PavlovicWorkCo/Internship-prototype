@@ -15,7 +15,7 @@ class App extends React.PureComponent {
         {this.props.isFetching && this.props.pathname !== '/bag' && <Loader />}
         {this.props.isFetching === false && this.props.pathname !== '/bag' && <Redirect to="/bag" />}
         <Switch>
-          <Route exact path="/bag" render={() => <BagPage isFetching={this.props.isFetching} />} />
+          <Route exact path="/bag" render={() => <BagPage {...this.props} />} />
         </Switch>
       </div>
     );

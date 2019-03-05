@@ -2,3 +2,46 @@
   display: flex;
   justify-content: space-between;
 }
+
+.Bag-and-checkout-wrapper {
+  position: relative;
+  overflow-y: hidden;
+  overflow-x: visible;
+  margin-left: 30px;
+  padding-bottom: 45px;
+}
+
+.Back-to-addition-link {
+  display: flex;
+  position: absolute;
+  left: 30px;
+  top: 40px;
+  align-items: center;
+  padding: 5px;
+  padding-left: 0px;
+  font-size: 20px;
+  z-index: 1;
+}
+
+.Back-to-addition-link:hover {
+  text-decoration: underline;
+}
+
+.Back-to-addition-arrow {
+  transform: rotate(90deg);
+  margin-right: 10px;
+}
+
+.Bag-container {
+}
+
+#checkout-container {
+  position: absolute;
+  transition: transform 0.3s ease-out 0.2s;
+  height: 1000px;
+  margin-top: 40px;
+}
+
+#checkout-container.Active {
+  top:0px;
+}
