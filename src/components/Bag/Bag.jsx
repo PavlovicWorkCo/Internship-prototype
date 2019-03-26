@@ -57,7 +57,7 @@ Bag.defaultProps = {
 Bag.propTypes = {
   bagItemsInfo: PropTypes.arrayOf(PropTypes.object),
   deleteBagItem: PropTypes.func,
-  setItemQuantity: null,
+  setItemQuantity: PropTypes.func,
 };
 
 

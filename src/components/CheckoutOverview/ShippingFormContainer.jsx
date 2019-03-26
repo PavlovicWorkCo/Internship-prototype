@@ -100,7 +100,7 @@ class ShippingFormContainer extends React.PureComponent {
             </AnimateHeight>
           )}
           {pickupInStore && shippingFormSubmitted && !isExpanded && (
-            <AnimateHeight duration={heightAnimationTime} height={overviewHeight} animateOpacit>
+            <AnimateHeight duration={heightAnimationTime} height={overviewHeight} animateOpacity>
               <div className="Shipping-address-overview">
                 {`${shippingFormSubmitted.firstName} ${shippingFormSubmitted.lastName}`}
                 <br />

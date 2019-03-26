@@ -6,6 +6,7 @@
 .Checkout-email-overview.Transparent {
   transition-delay: 0s;
   opacity: 0;
+  height: 0px;
 }
 
 .Checkout-form-edit-button {

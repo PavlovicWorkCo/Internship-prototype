@@ -86,6 +86,7 @@ class BillSummaryCheckout extends React.PureComponent {
         submitPromoCode={e => this.submitPromoCode(e)}
         onPromoCodeChange={e => this.onPromoCodeChange(e)}
         promoCode={promoCode}
+        formId="promo-code-form-checkout"
       />
     );
   }
@@ -151,7 +152,7 @@ BillSummaryCheckout.propTypes = {
   pickupInStore: PropTypes.bool,
   paymentMethodSubmitted: PropTypes.object,
   totalCost: PropTypes.number,
-  promoCodeSubmitted: PropTypes.bool,
+  promoCodeSubmitted: PropTypes.string,
   onBillSummaryInputFocusToggle: PropTypes.func,
   focusedFormId: PropTypes.string,
   submitPromoCode: PropTypes.func,

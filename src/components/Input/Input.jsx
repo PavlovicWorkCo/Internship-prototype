@@ -186,7 +186,7 @@ class Input extends React.PureComponent {
               onBlur={e => this.onInputBlur(e)}
               onChange={e => this.onInputChange(e)}
               ref={this.inputRef}
-              value={defaultValue}
+              defaultValue={defaultValue}
               mask={inputMask}
               spellCheck={false}
               maskChar={null}
@@ -202,12 +202,12 @@ class Input extends React.PureComponent {
               onBlur={e => this.onInputBlur(e)}
               onChange={e => this.onInputChange(e)}
               ref={this.inputRef}
-              value={defaultValue}
+              defaultValue={defaultValue}
               spellCheck={false}
             />
           )}
           {togglePasswordVisibility && (
-            <button type="button" onMouseDown={e => this.passwordToggle(e)} className={togglePasswordClass}>
+            <button tabIndex={-1} type="button" onMouseDown={e => this.passwordToggle(e)} className={togglePasswordClass}>
               <ReactSVG src={TogglePasswordIcon} svgClassName={toggleIconClass} />
             </button>
           )}
@@ -236,7 +236,7 @@ Input.defaultProps = {
   onBlur: null,
   inputID: null,
   emailIsEmptyWarning: null,
-  defaultValue: null,
+  defaultValue: '',
   inputLabelText: null,
   passwordsDontMatchWarning: null,
   passwordIsInvalid: null,

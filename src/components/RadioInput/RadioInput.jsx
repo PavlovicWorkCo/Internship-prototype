@@ -12,7 +12,8 @@ class RadioInput extends React.PureComponent {
     return (
       <label htmlFor={inputId} className={inputContainerClassName}>
         {labelBeforeRadioButton && <span>{radioLabelText}</span>}
-        <input value={value} type="radio" className="Input-hidden" name={name} id={inputId} checked={isChecked} />
+        <input value={value} type="radio" className="Input-hidden" name={name} id={inputId} checked={isChecked} readOnly />
+        {/* zasto readOnly??? */}
         <span className={checkBoxClass} />
         {!labelBeforeRadioButton && <span>{radioLabelText}</span>}
       </label>

@@ -44,7 +44,7 @@ PromoCodeResults.defaultProps = {
 PromoCodeResults.propTypes = {
   promoDiscount: PropTypes.number,
   bagItemsCost: PropTypes.number,
-  promoCodeSubmitted: PropTypes.bool,
+  promoCodeSubmitted: PropTypes.string,
   focusedFormId: PropTypes.string,
   submitPromoCode: PropTypes.func,
 };

@@ -10,9 +10,8 @@ class PromoCodeDropdown extends React.PureComponent {
     const {
       promoCodeSubmitted, onBillSummaryInputFocusToggle, focusedFormId,
       togglePromoCodeFormVisibility, promoCodeFormIsShowing, submitPromoCode,
-      onPromoCodeChange, promoCode,
+      onPromoCodeChange, promoCode, formId,
     } = this.props;
-    const formId = 'promo-code-form';
     const arrowIconClass = classNames({
       Active: promoCodeFormIsShowing,
       'Estimate-tax-expand-icon': true,
@@ -70,17 +69,19 @@ PromoCodeDropdown.defaultProps = {
   promoCodeFormIsShowing: null,
   onPromoCodeChange: null,
   promoCode: null,
+  formId: null,
 };
 
 PromoCodeDropdown.propTypes = {
   promoCodeSubmitted: PropTypes.string,
   onBillSummaryInputFocusToggle: PropTypes.func,
-  focusedFormId: PropTypes.bool,
+  focusedFormId: PropTypes.string,
   submitPromoCode: PropTypes.func,
   togglePromoCodeFormVisibility: PropTypes.func,
   promoCodeFormIsShowing: PropTypes.bool,
   onPromoCodeChange: PropTypes.func,
   promoCode: PropTypes.string,
+  formId: PropTypes.string,
 };
 
 export default PromoCodeDropdown;

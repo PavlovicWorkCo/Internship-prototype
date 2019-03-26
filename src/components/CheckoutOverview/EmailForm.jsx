@@ -96,14 +96,14 @@ class EmailForm extends React.PureComponent {
   onContinueAsGuestClick() {
     const { emailIsValid, emailInputValue } = this.state; //eslint-disable-line
     const { submitEmail, setEditingFormRef, heightAnimationTime } = this.props;
-    // if (!emailInputValue) {
-    //   this.setState({
-    //     emailIsEmptyWarning: 'Please enter your email address',
-    //   });
-    // }
-    // if (!emailIsValid) return;
-    // submitEmail(emailInputValue);
-    submitEmail('test@test.com');
+    if (!emailInputValue) {
+      this.setState({
+        emailIsEmptyWarning: 'Please enter your email address',
+      });
+    }
+    if (!emailIsValid) return;
+    submitEmail(emailInputValue);
+    // submitEmail('test@test.com');
     this.setState({
       createPasswordView: false,
     });

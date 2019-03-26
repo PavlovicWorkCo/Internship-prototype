@@ -15,6 +15,13 @@ class ShippingForm extends React.PureComponent {
     };
   }
 
+  componentDidUpdate(prevProps) {
+    const { pickupInStore } = this.props;
+    if (prevProps.pickupInStore !== pickupInStore) {
+      this.resetInformationIsIncomplete();
+    }
+  }
+
   onInputChange(e, inputName) {
     const { formValues, informationIsIncomplete } = this.state;
     const newFormValues = { ...formValues, [`${inputName}`]: e.target.value };
@@ -40,26 +47,28 @@ class ShippingForm extends React.PureComponent {
 
   onFormSubmit(e) {
     e.preventDefault();
-    // const { formValues } = this.state;
+    const { formValues } = this.state;
     const {
       submitShippingForm, setEditingFormRef, submitPostalCode, heightAnimationTime,
     } = this.props;
-    submitPostalCode('11000');
-    submitShippingForm({
-      shippingCountry: 'Canada', shippingProvince: 'srb', shippingCity: 'bg', shippingAddress: 'cara dus 23', phoneNumber: '2323123', fistName: 'pera', lastName: 'peric', shippingPostalCode: '11000',
-    });
-    // if (this.isInformationIncomplete()) {
-    //   this.setState({
-    //     informationIsIncomplete: true,
-    //   });
-    //   return;
-    // }
-    // //
-    // this.setState({
-    //   informationIsIncomplete: false,
+    // submitPostalCode('11000');
+    // submitShippingForm({
+    //   shippingCountry: 'Canada', shippingProvince: 'srb', shippingCity: 'bg',
+    // shippingAddress: 'cara dus 23', phoneNumber: '2323123', fistName: 'pera',
+    // lastName: 'peric', shippingPostalCode: '11000',
     // });
-    // submitPostalCode(formValues.shippingPostalCode);
-    // submitShippingForm(formValues);
+    if (this.isInformationIncomplete()) {
+      this.setState({
+        informationIsIncomplete: true,
+      });
+      return;
+    }
+    //
+    this.setState({
+      informationIsIncomplete: false,
+    });
+    submitPostalCode(formValues.shippingPostalCode);
+    submitShippingForm(formValues);
     setEditingFormRef(null);
     scroll.scrollTo(185, {
       duration: heightAnimationTime,
@@ -75,6 +84,12 @@ class ShippingForm extends React.PureComponent {
         storeProvince: 'British Columbia',
         storeCity: city,
       },
+    });
+  }
+
+  resetInformationIsIncomplete() {
+    this.setState({
+      informationIsIncomplete: false,
     });
   }
 
@@ -110,6 +125,7 @@ class ShippingForm extends React.PureComponent {
           inputClassName="Default-input Checkout-input-size"
           inputLabeled
           onChange={e => this.onInputChange(e, 'shippingAddress')}
+          defaultValue={formValues.shippingAddress}
 
         />
         <Input
@@ -119,6 +135,7 @@ class ShippingForm extends React.PureComponent {
           inputClassName="Default-input Checkout-input-size"
           inputLabeled
           onChange={e => this.onInputChange(e, 'shippingAddressApartment')}
+          defaultValue={formValues.shippingAddressApartment}
 
         />
         <Input
@@ -127,7 +144,7 @@ class ShippingForm extends React.PureComponent {
           inputClassName="Default-input Checkout-input-size"
           inputLabeled
           onChange={e => this.onInputChange(e, 'shippingCity')}
-
+          defaultValue={formValues.shippingCity}
         />
         <Input
           containerClassName="Checkout-small-text-input"
@@ -135,6 +152,7 @@ class ShippingForm extends React.PureComponent {
           inputClassName="Default-input Checkout-input-size"
           inputLabeled
           onChange={e => this.onInputChange(e, 'shippingProvince')}
+          defaultValue={formValues.shippingProvince}
 
         />
         <Input

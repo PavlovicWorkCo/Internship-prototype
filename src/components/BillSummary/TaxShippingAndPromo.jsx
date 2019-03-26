@@ -256,6 +256,7 @@ class TaxShippingAndPromo extends React.PureComponent {
         submitPromoCode={e => this.submitPromoCode(e)}
         onPromoCodeChange={e => this.onPromoCodeChange(e)}
         promoCode={promoCode}
+        formId="promo-code-form-bag"
       />
     );
   }

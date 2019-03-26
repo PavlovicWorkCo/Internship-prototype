@@ -18,7 +18,7 @@ class PaymentForm extends React.PureComponent {
       },
       informationIsIncomplete: false,
       cardNumberInputMask: '9999 9999 9999 9999',
-      cardNumber: '23232323',
+      // cardNumber: '23232323',
     };
     this.formRef = React.createRef();
   }
@@ -62,10 +62,11 @@ class PaymentForm extends React.PureComponent {
   onFormSubmit(e) {
     const { submitPaymentMethod, setEditingFormRef } = this.props;
     const { formValues } = this.state;
-    submitPaymentMethod({
-      cardNumber: '123123', cardExpirationDate: '11/23', cardHolderName: 'nik pav', cardCVVNumber: '123',
-    });
-    setEditingFormRef(null);
+    // submitPaymentMethod({
+    //   cardNumber: '123123', cardExpirationDate: '11/23',
+    // cardHolderName: 'nik pav', cardCVVNumber: '123',
+    // });
+    // setEditingFormRef(null);
     e.preventDefault();
     if (!(formValues.cardHolderName && formValues.cardNumber
       && formValues.cardExpirationDate && formValues.cardCVVNumber)) {
