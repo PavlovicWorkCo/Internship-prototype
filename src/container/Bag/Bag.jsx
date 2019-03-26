@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import Bag from '../../components/Bag/Bag';
-import { deleteBagItem } from '../../redux/actions';
+import { deleteBagItem, setItemQuantity } from '../../redux/actions';
 
 const mapStateToProps = state => ({
   bagItemsInfo: state.bagItems.items,
@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = dispatch => (
   {
     deleteBagItem: (index) => { dispatch(deleteBagItem(index)); },
+    setItemQuantity: (quantity, itemIndex) => { dispatch(setItemQuantity(quantity, itemIndex)); },
   }
 );
 

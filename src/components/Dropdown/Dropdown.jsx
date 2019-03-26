@@ -15,11 +15,25 @@ class Dropdown extends React.PureComponent {
     this.dropdownButton = React.createRef();
   }
 
+  componentDidUpdate(prevProps) {
+    const { defaultSelected } = this.props;
+    if (prevProps.defaultSelected !== defaultSelected) {
+      this.setSelected(defaultSelected);
+    }
+  }
+
   onOutsideClick() {
     this.closeDropdown();
   }
 
+  setSelected(value) {
+    this.setState({
+      dropdownSelected: value,
+    });
+  }
+
   setDropdownValue(option) {
+    const { setInputValue } = this.props;
     this.setState(
       {
         dropdownSelected: option,
@@ -28,6 +42,9 @@ class Dropdown extends React.PureComponent {
         this.toggleDropdown();
       },
     );
+    if (setInputValue) {
+      setInputValue(option);
+    }
   }
 
   closeDropdown() {
@@ -174,6 +191,7 @@ Dropdown.defaultProps = {
   selectedColorPreviewClass: 'Bag-item-color-preview',
   selectedContentClass: null,
   placeholderClass: 'Dropdown-placeholder',
+  setInputValue: null,
 };
 
 Dropdown.propTypes = {
@@ -195,6 +213,7 @@ Dropdown.propTypes = {
   selectedColorPreviewClass: PropTypes.string,
   selectedContentClass: PropTypes.string,
   placeholderClass: PropTypes.string,
+  setInputValue: PropTypes.func,
 };
 
 

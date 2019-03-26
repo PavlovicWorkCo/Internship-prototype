@@ -6,14 +6,13 @@ import React from 'react';
 class RadioInput extends React.PureComponent {
   render() {
     const {
-      labelBeforeRadioButton, name, radioLabelText, inputId, isDefaultChecked,
+      labelBeforeRadioButton, name, radioLabelText, inputId, isChecked,
       checkBoxClass, inputContainerClassName, value,
     } = this.props;
-
     return (
       <label htmlFor={inputId} className={inputContainerClassName}>
         {labelBeforeRadioButton && <span>{radioLabelText}</span>}
-        <input value={value} type="radio" className="Input-hidden" name={name} id={inputId} defaultChecked={isDefaultChecked} />
+        <input value={value} type="radio" className="Input-hidden" name={name} id={inputId} checked={isChecked} />
         <span className={checkBoxClass} />
         {!labelBeforeRadioButton && <span>{radioLabelText}</span>}
       </label>
@@ -28,7 +27,7 @@ RadioInput.defaultProps = {
   name: null,
   radioLabelText: null,
   inputId: null,
-  isDefaultChecked: false,
+  isChecked: false,
   checkBoxClass: 'Standard-checkbox',
   value: null,
 };
@@ -39,9 +38,9 @@ RadioInput.propTypes = {
   name: PropTypes.string,
   radioLabelText: PropTypes.string,
   inputId: PropTypes.string,
-  isDefaultChecked: PropTypes.bool,
+  isChecked: PropTypes.bool,
   checkBoxClass: PropTypes.string,
-  value: PropTypes.number,
+  value: PropTypes.bool,
 };
 
 

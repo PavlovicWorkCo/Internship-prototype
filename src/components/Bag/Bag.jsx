@@ -6,7 +6,7 @@ import './Bag.css';
 import Button from '../Button/Button';
 
 const Bag = (props) => {
-  const { bagItemsInfo, deleteBagItem } = props;
+  const { bagItemsInfo, deleteBagItem, setItemQuantity } = props;
   const bagItems = bagItemsInfo.map((bagItem, index) => (
     <BagItem
       key={bagItem.id}
@@ -20,6 +20,7 @@ const Bag = (props) => {
       availableSizes={bagItem.available_sizes}
       deleteBagItem={() => deleteBagItem(index)}
       smallVersion={bagItemsInfo.length > 2}
+      setItemQuantity={quantity => setItemQuantity(quantity, index)}
     />
   ));
 
@@ -40,7 +41,9 @@ const Bag = (props) => {
         </div>
       </div>
       <BagLabelsContainer numberOfItems={bagItemsInfo.length} />
-      {bagItems}
+      <div className="Bag-items-container">
+        {bagItems}
+      </div>
     </React.Fragment>
   );
 };
@@ -48,11 +51,13 @@ const Bag = (props) => {
 Bag.defaultProps = {
   bagItemsInfo: null,
   deleteBagItem: null,
+  setItemQuantity: null,
 };
 
 Bag.propTypes = {
   bagItemsInfo: PropTypes.arrayOf(PropTypes.object),
   deleteBagItem: PropTypes.func,
+  setItemQuantity: null,
 };
 
 

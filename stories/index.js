@@ -49,6 +49,7 @@ storiesOf('Button', module)
 storiesOf('Input', module)
   .add('Standard and labeled', () => (
     <Input
+      containerClassName="Storybook-input-size"
       inputLabeled
       inputLabelClassName="Standard-input-label"
       placeholderText="Address"
@@ -57,6 +58,7 @@ storiesOf('Input', module)
   ))
   .add('Email', () => (
     <Input
+      containerClassName="Storybook-input-size"
       placeholderText="Email"
       inputCheckerType="email"
       inputClassName="Email-input Default-input"
@@ -64,6 +66,7 @@ storiesOf('Input', module)
   ))
   .add('Password', () => (
     <Input
+      containerClassName="Storybook-input-size"
       inputType="password"
       placeholderText="Password"
       inputCheckerType="password"

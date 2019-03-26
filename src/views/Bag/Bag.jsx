@@ -6,6 +6,7 @@ import BillSummaryContainer from '../../container/BillSummary/BillSummary';
 import './Bag.css';
 import dropdownArrowIcon from '../../assets/icons/dropdownArrow.svg';
 import CheckoutContainer from '../../container/CheckoutOverview/CheckoutOverview';
+import Button from '../../components/Button/Button';
 
 class BagPage extends React.PureComponent {
   componentDidUpdate(prevProps) {
@@ -16,20 +17,26 @@ class BagPage extends React.PureComponent {
   }
 
   setElementPosition() {
-    const bagContainer = document.getElementById('bag-container');
-    const bagContainerHeight = bagContainer.offsetHeight;
-    bagContainer.style.transform = `translate(0, -${bagContainerHeight + parseFloat(getComputedStyle(bagContainer).marginTop)}px)`;
-
+    const { checkoutViewActive } = this.props;
+    const bagWrapper = document.getElementById('bag-wrapper');
+    const bagWrapperHeight = bagWrapper.offsetHeight;
     const checkoutContainer = document.getElementById('checkout-container');
-    checkoutContainer.style.transform = `translate(0, -${bagContainerHeight + parseFloat(getComputedStyle(bagContainer).marginTop)}px)`;
+    if (checkoutViewActive) {
+      checkoutContainer.style.transform = `translate(0, -${bagWrapperHeight + parseFloat(getComputedStyle(bagWrapper).marginTop)}px)`;
+      bagWrapper.style.transform = `translate(0, -${bagWrapperHeight + 10 + parseFloat(getComputedStyle(bagWrapper).marginTop)}px)`;
+    } else {
+      checkoutContainer.style.transform = 'translate(0, 0px)';
+      bagWrapper.style.transform = 'translate(0, 0px)';
+    }
   }
 
   render() {
-    const { isFetching } = this.props;
+    const { isFetching, setCheckoutView, checkoutViewActive } = this.props;
+    const toggleViewClass = checkoutViewActive ? 'Checkout-view' : 'Bag-view';
     return (
       <div className="Bag-page">
-        {isFetching === true && <Loader />}
-        {isFetching === false
+        {isFetching && <Loader />}
+        {!isFetching
           && (
             <React.Fragment>
               <a className="Back-to-addition-link" href="/">
@@ -40,11 +47,18 @@ class BagPage extends React.PureComponent {
                 />
                 ADDITION ELLE
               </a>
+              <Button
+                buttonIcon={dropdownArrowIcon}
+                iconClassName="Back-to-bag-icon"
+                className={`Transparent-button Back-to-bag ${toggleViewClass}`}
+                buttonText="Back to bag"
+                onClick={() => setCheckoutView(false)}
+              />
               <div className="Bag-and-checkout-wrapper">
-                <div id="bag-container">
+                <div id="bag-wrapper" className={`Bag-wrapper ${toggleViewClass}`}>
                   <BagContainer />
                 </div>
-                <div id="checkout-container">
+                <div id="checkout-container" className={`Checkout-container ${toggleViewClass}`}>
                   <CheckoutContainer />
                 </div>
               </div>
@@ -59,11 +73,13 @@ class BagPage extends React.PureComponent {
 BagPage.defaultProps = {
   isFetching: null,
   checkoutViewActive: null,
+  setCheckoutView: null,
 };
 
 BagPage.propTypes = {
   isFetching: PropTypes.bool,
   checkoutViewActive: PropTypes.bool,
+  setCheckoutView: PropTypes.func,
 };
 
 

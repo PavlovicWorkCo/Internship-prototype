@@ -1,0 +1,123 @@
+.Checkout-phase-label {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 0px;
+  width: 100%;
+  font-size: 18px;
+  font-family: Helvetica;
+  font-size: 24px;
+  color: var(--lightgray);
+  letter-spacing: -0.5px;
+}
+
+.Phase-label-name {
+  width: 80%;
+}
+
+.Checkout-email-form-content-wrapper {
+  margin-bottom: 40px;
+}
+
+.Checkout-email-form-content-wrapper,
+.Checkout-shipping-form-content-wrapper,
+.Checkout-payment-form-content-wrapper,
+.Checkout-review-form-content-wrapper {
+  width: 80%;
+}
+
+.Checkout-email-form-container,
+.Checkout-shipping-form-container,
+.Checkout-payment-form-container,
+.Checkout-review-form-container {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.Checkout-email-form-container,
+.Checkout-shipping-form-container,
+.Checkout-payment-form-container {
+  border-bottom: 1px solid var(--transparent_black);
+}
+
+.Checkout-email-form-content-wrapper,
+.Checkout-shipping-form-content-wrapper {
+  font-family: Helvetica;
+  font-size: 14px;
+  color: black;
+  letter-spacing: 0.3px;
+  line-height: 22px;
+}
+
+.Checkout-input-size {
+  height: 30px;
+  width: calc(100% - 10px);
+  padding-right: 10px;
+}
+
+.Account-options-container,
+.Checkout-shipping-options-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-top: 50px;
+}
+
+.Checkout-light-button {
+  width: 48%;
+  height: 60px;
+}
+
+.Light-button.Checkout-light-button:hover {
+  border-color: black;
+}
+
+.Light-button.Checkout-light-button {
+  border-color: var(--transparent_black);
+  font-size: 14px;
+}
+
+.Checkout-light-button.Active {
+  border-color: black;
+}
+
+
+
+.Checkout-shipping-form,
+.Checkout-payment-form {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: 50px;
+}
+
+.Checkout-payment-form {
+  position:relative;
+}
+
+.Invisible {
+  visibility: hidden;
+}
+.Checkout-big-text-input {
+  width: 100%;
+}
+
+.Checkout-small-text-input {
+  width: 48%;
+}
+
+.Checkout-big-text-input,
+.Checkout-small-text-input {
+  position: relative;
+  padding-top: 15px;
+  margin-top: 15px;
+}
+
+.Name-warning {
+  margin: 50px 0 20px 0;
+  font-family: Helvetica;
+  font-size: 16px;  
+  letter-spacing: 0;
+  line-height: 28px;
+}

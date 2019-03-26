@@ -1,0 +1,84 @@
+.Shipping-country-dropdown {
+  margin-left: 0px;
+}
+
+.Shipping-country-dropdown-button {
+  height: 33px;
+  padding: 1px;
+  border-bottom-width: 1px;
+}
+
+.Shipping-country-dropdown-label {
+
+}
+
+.Shipping-country-dropdown.Dropdown-container-test {
+  height: auto;
+  position: relative;
+  padding-top: 15px;
+  margin-top: 15px;
+  width: 48%;
+  margin-right: 0px;
+}
+
+.Shipping-country-dropdown-options-container {
+  top: 48px;
+  width: calc(100% - 2px);
+  z-index: 1;
+  font-size: 12px;
+  background-color: white;
+}
+
+.Continue-to-payment-button {
+  width: 100%;
+  height: 60px;
+  margin-top: 50px;
+}
+
+.Required-info:hover {
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: Helvetica;
+  font-size: 13px;
+  color: black;
+  letter-spacing: 0.28px;
+  line-height: 22px;
+}
+
+.Shipping-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 50px;
+}
+
+.Shipping-type {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: black;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.Shipping-time {
+  opacity: 0.4;
+  font-family: Helvetica;
+  font-size: 13px;
+  color: black;
+  letter-spacing: 0.18px;
+  line-height: 22px;
+}
+
+.Continue-to-payment-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.Incomplete-info-warning {
+  position: absolute;
+  color: red;
+}
+
+.Shipping-address-overview {
+  margin-bottom: 40px;
+}

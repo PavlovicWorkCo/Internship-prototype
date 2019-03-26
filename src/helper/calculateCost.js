@@ -10,10 +10,11 @@ export function checkShipToAddressFree(itemsCost) {
   return itemsCost > freeShippingThreshold;
 }
 
-export function getTotalCost(itemsCost, tax1, tax2, promoDiscount, pickupInStore, isShippingFree) {
+export function getTotalCost(itemsCost, tax1, tax2, promoDiscount,
+  pickupInStore, isShippingToAddressFree) {
   const totalCost = itemsCost * (1 - promoDiscount / 100) // apply discount
   * (1 + (tax1 + tax2) / 100) // apply tax
-  + (isShippingFree || pickupInStore ? 0 : defaultShippingCost); // apply shipping cost
+  + (isShippingToAddressFree || pickupInStore ? 0 : defaultShippingCost); // apply shipping cost
   return Math.round(totalCost * 100) / 100;
 }
 

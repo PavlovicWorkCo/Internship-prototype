@@ -5,42 +5,292 @@
   width: 315px;
   padding: 30px;
   padding-top: 40px;
-  height: calc(100vh - 70px);
+  height: calc(100vh - 70px); /* padding-top + padding-bottom= 70px */
   position: fixed;
   right: 0px;
 }
 
-.Bill-summary-content {
-  position: relative;
-  height: 100%;
+.Promo-code-form-container.Display-none {
+  display: none;
 }
-
-.Bill-summary-checkout {
-  padding-top: 10px;
-  transition: top 2s, opacity 1s;
-  position: absolute;
-  top: 50px;
+.Faded {
+  opacity: 0.5;
+}
+.Unfaded {
+  opacity: 1;
+}
+.Fade-away {
   opacity: 0;
+  visibility: hidden;
+  padding: 0px;
+  margin: 0px;
 }
 
-.Bill-summary-checkout-final {
-  position: absolute;
-  top: 0px;
-  padding-top: 10px;
+.Bill-summary-bag-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.Bill-summary-content-wrapper {
+  position: relative;
+  font-size: 12px;
+}
+
+.Tax-shipping-promo-container {
+  margin-top: 25px;
+  height: auto;
+  width: auto;
+  max-height: 100000px;
+  max-width: 100000px;
+}
+
+.Tax-shipping-promo-container.Fade-away {
+  margin-top: 0px;
+  max-height: 0px;
+  max-width: 0px;
+  transition: opacity 0.5s, visibility 0s linear 0.5s, max-width 0s linear 0.5s, max-height 0s linear 0.5s, padding 0s linear 0.5s, margin 0.5s, transform 0.5s;
+}
+
+.Tax-shipping-promo-container.Fade-in {
+  transition: opacity 0.5s, padding 0s linear 0.5s, margin 0.5s, transform 0.5s;
+}
+
+
+.Shipping-cost-status-container {
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.Bullet-point-shipping-cost  {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: black;
+  margin-right: 20px;
+}
+
+.Bill-summary-label-container::after {
+  content:"";
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: black;
+}
+.Bill-summary-label {
+  font-size: 12px;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.Estimate-tax-container {
+  border-bottom: 1px solid var(--bill_summary_transparent_border);
+  height: 38px;
+  transition: height 0.25s;
+  overflow: hidden;
+}
+
+.Estimate-tax-container.Expanded {
+  height: 105px;
+}
+
+.Estimate-tax-container.Collapsed {
+  height: 38px;
+}
+
+.Estimate-tax-button.Transparent-button,
+.Promo-code-button.Transparent-button {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.Estimate-tax-expand-icon {
+  margin-left: 5px;
+  position: relative;
+}
+
+.Estimate-tax-expand-icon.Active {
+  transform: rotate(180deg);
+}
+
+.Postal-code-form-container,
+.Promo-code-form-container {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  margin-top: 20px;
+  transition: opacity 0.25s;
+}
+
+.Postal-code-form-container.Visible {
   opacity: 1;
 }
 
-.Bill-summary-checkout-starting-position {
-
+.Postal-code-form-container.Invisible {
+  opacity: 0;
 }
 
-/* .Bill-summary-bag {
-  animation: slideIn 2s;
-  animation-fill-mode: forwards;
+.Postal-code-input-container {
+  width: 200px;
 }
 
+.Postal-code-input.Default-input {
+  width: 100%;
+  height: 30px;
+  border-bottom-color: black;
+  font-size: 16px;
+}
 
-@keyframes slideIn {
-  0% {transform: translate(0);}
-  100% {transform: translate(0, calc(-100vh));}
-} */
+.Postal-code-input::placeholder {
+  color: black;
+  position: relative;
+  top: 2px;
+  font-family: Helvetica;
+  font-size: 16px;
+  letter-spacing: 0;
+}
+
+.Postal-code-submit-button,
+.Promo-code-submit-button {
+  color: white;
+  padding: 6px 20px;
+  font-size: 14px;
+  height: 33px;
+  margin-left: 20px
+}
+
+.Postal-code-warning {
+  font-size: 12px;
+  color: var(--bill_summary_warning_red);
+  letter-spacing: 0.3px;
+  line-height: 22px;
+}
+
+.Tax-costs-container {
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 20px;
+}
+
+.Tax-cost-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
+.Shipping-options-container {
+  padding: 20px 0px;
+  border-bottom: 1px solid var(--bill_summary_transparent_border);
+  font-size: 12px;
+}
+.Shipping-options-container>p {
+  color: gray;
+}
+.Shipping-form> div{
+  margin-top: 10px;
+}
+
+.Ship-to-address-free {
+  margin-right: 10px;
+  font-size: 12px;
+  color: var(--bill_summary_warning_red);
+  letter-spacing: 0.3px;
+  text-align: right;
+}
+
+.Promo-code-active-container {
+  padding: 10px 0px;
+  border-bottom: 1px solid var(--bill_summary_transparent_border)
+}
+
+.Promo-code-container {
+  height: 37px;
+  transition: height 0.25s;
+  margin-top: 20px;
+  border-bottom: 1px solid var(--bill_summary_transparent_border);
+  overflow: hidden;
+}
+
+.Promo-code-form-container.Visible {
+  opacity: 1;
+}
+
+.Promo-code-form-container.Invisible {
+  opacity: 0;
+}
+
+.Promo-code-container.Collapsed {
+  height: 37px;
+}
+
+.Promo-code-container.Expanded {
+  height: 100px;
+}
+
+.Promo-code-discount-container,
+.Current-promo-code-container {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 0.3px;
+  line-height: 22px;
+}
+
+.Promo-code-discount-container {
+  color: var(--bill_summary_warning_red);
+}
+.Cost-and-checkout-container {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  max-width: 9999px;
+  max-height: 99999px;
+}
+
+.Cost-and-checkout-container.Fade-away {
+  /* height and width cant be animated or delayed from auto to 0 so i used max-height and width  */
+  width: 100%;
+  max-height: 0px;
+  max-width: 0px;
+  transition: opacity 0.5s, visibility 0s linear 0.5s, max-width 0s linear 0.5s, max-height 0s linear 0.5s;
+}
+
+.Cost-and-checkout-container.Fade-in {
+  transition: opacity 0.5s;
+}
+
+.Total-cost-container {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.Total-cost-label,
+.Total-cost-value {
+  display: flex;
+  align-items: flex-end;
+}
+
+.Total-cost-label {
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 20px;
+}
+
+.Total-cost-value {
+  font-size: 20px;
+  letter-spacing: 0;
+  line-height: 28px;
+}
+
+.Bill-summary-button {
+  width: 100%;
+  height: 60px;
+}

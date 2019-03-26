@@ -7,8 +7,12 @@ export const CHANGE_PROMO_CODE_DISCOUNT = 'CHANGE_PROMO_CODE';
 export const CHANGE_TAX = 'CHANGE_TAX';
 export const SUBMIT_PROMO_CODE = 'SUBMIT_PROMO_CODE';
 export const SUBMIT_POSTAL_CODE = 'SUBMIT_POSTAL_CODE';
-export const TOGGLE_PICKUP_IN_STORE = 'TOGGLE_PICKUP_IN_STORE';
-
+export const SET_PICKUP_IN_STORE = 'TOGGLE_PICKUP_IN_STORE';
+export const SUBMIT_EMAIL = 'SUBMIT_EMAIL';
+export const LOG_WITH_ACCOUNT = 'LOG_WITH_ACCOUNT';
+export const SUBMIT_SHIPPING_FORM = 'SUBMIT_SHIPPING_FORM';
+export const SUBMIT_PAYMENT_METHOD = 'SUBMIT_PAYMENT_METHOD';
+export const SET_ITEM_QUANTITY = 'SET_ITEM_QUANTITY';
 function requestBag() {
   return {
     type: BAG_REQUEST,
@@ -46,9 +50,18 @@ export function deleteBagItem(index) {
   };
 }
 
-export function goToCheckout() {
+export function setItemQuantity(itemQuantity, itemIndex) {
+  return {
+    type: SET_ITEM_QUANTITY,
+    itemQuantity: Number(itemQuantity),
+    itemIndex,
+  };
+}
+
+export function setCheckoutView(value) {
   return {
     type: ACTIVATE_CHECKOUT_VIEW,
+    value,
   };
 }
 
@@ -73,8 +86,30 @@ export function submitPostalCode(code) {
   };
 }
 
-export function togglePickupInStore() {
+export function setPickupInStore(boolValue) {
   return {
-    type: TOGGLE_PICKUP_IN_STORE,
+    type: SET_PICKUP_IN_STORE,
+    boolValue,
+  };
+}
+
+export function submitEmail(email) {
+  return {
+    type: SUBMIT_EMAIL,
+    email,
+  };
+}
+
+export function submitShippingForm(formValuesObj) {
+  return {
+    type: SUBMIT_SHIPPING_FORM,
+    submittedFormValues: formValuesObj,
+  };
+}
+
+export function submitPaymentMethod(formValuesObj) {
+  return {
+    type: SUBMIT_PAYMENT_METHOD,
+    submittedFormValues: formValuesObj,
   };
 }

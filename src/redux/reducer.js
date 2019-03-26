@@ -3,6 +3,7 @@ import {
   getBagItemsCost, getTotalCost, checkShipToAddressFree, estimateTax,
 } from '../helper/calculateCost';
 import { defaultGSTRate, defaultPSTRate, defaultPromoDiscount } from '../helper/costChangers';
+import checkoutReducer from './checkoutReducer';
 
 import {
   BAG_REQUEST,
@@ -12,7 +13,8 @@ import {
   ACTIVATE_CHECKOUT_VIEW,
   SUBMIT_PROMO_CODE,
   SUBMIT_POSTAL_CODE,
-  TOGGLE_PICKUP_IN_STORE,
+  SET_PICKUP_IN_STORE,
+  SET_ITEM_QUANTITY,
 } from './actions';
 
 const bagItems = (
@@ -90,11 +92,54 @@ const bagItems = (
           ...state.items.slice(action.index + 1),
         ]), state.taxPSTRate, state.promoDiscount),
       });
-    case TOGGLE_PICKUP_IN_STORE:
+    case SET_ITEM_QUANTITY:
       return Object.assign({}, state, {
-        pickupInStore: !state.pickupInStore,
+        items: [
+          ...state.items.slice(0, action.itemIndex),
+          Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+          ...state.items.slice(action.itemIndex + 1),
+        ],
+        bagItemsCost: getBagItemsCost([
+          ...state.items.slice(0, action.itemIndex),
+          Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+          ...state.items.slice(action.itemIndex + 1),
+        ]),
+        totalCost: getTotalCost(getBagItemsCost([
+          ...state.items.slice(0, action.itemIndex),
+          Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+          ...state.items.slice(action.itemIndex + 1),
+        ]),
+        state.taxGSTRate, state.taxPSTRate, state.promoDiscount,
+        state.pickupInStore, checkShipToAddressFree(getBagItemsCost(
+          [
+            ...state.items.slice(0, action.itemIndex),
+            Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+            ...state.items.slice(action.itemIndex + 1),
+          ],
+        ))),
+        isShippingToAddressFree: checkShipToAddressFree(getBagItemsCost(
+          [
+            ...state.items.slice(0, action.itemIndex),
+            Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+            ...state.items.slice(action.itemIndex + 1),
+          ],
+        )),
+        gstTax: estimateTax(getBagItemsCost([
+          ...state.items.slice(0, action.itemIndex),
+          Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+          ...state.items.slice(action.itemIndex + 1),
+        ]), state.taxGSTRate, state.promoDiscount),
+        pstTax: estimateTax(getBagItemsCost([
+          ...state.items.slice(0, action.itemIndex),
+          Object.assign({}, state.items[action.itemIndex], { quantity: action.itemQuantity }),
+          ...state.items.slice(action.itemIndex + 1),
+        ]), state.taxPSTRate, state.promoDiscount),
+      });
+    case SET_PICKUP_IN_STORE:
+      return Object.assign({}, state, {
+        pickupInStore: action.boolValue,
         totalCost: getTotalCost(state.bagItemsCost, state.taxGSTRate,
-          state.taxPSTRate, state.promoDiscount, !state.pickupInStore,
+          state.taxPSTRate, state.promoDiscount, action.boolValue,
           state.isShippingToAddressFree),
       });
     case SUBMIT_PROMO_CODE:
@@ -130,11 +175,12 @@ const checkoutView = (
 ) => {
   switch (action.type) {
     case ACTIVATE_CHECKOUT_VIEW:
-      return true;
+      return action.value;
     default:
       return state;
   }
 };
 
-const reducers = combineReducers({ bagItems, checkoutView });
+
+const reducers = combineReducers({ bagItems, checkoutView, checkoutReducer });
 export default reducers;

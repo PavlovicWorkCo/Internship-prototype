@@ -1,7 +1,8 @@
 import { connect } from 'react-redux';
 import BillSummary from '../../components/BillSummary/BillSummary';
 import {
-  goToCheckout, submitPromoCode, submitPostalCode, togglePickupInStore,
+  setCheckoutView, submitPromoCode, submitPostalCode, setPickupInStore,
+  submitShippingForm,
 } from '../../redux/actions';
 
 const mapStateToProps = state => ({
@@ -17,14 +18,17 @@ const mapStateToProps = state => ({
   bagItemsCost: state.bagItems.bagItemsCost,
   promoCodeSubmitted: state.bagItems.promoCodeSubmitted,
   postalCodeSubmitted: state.bagItems.postalCodeSubmitted,
+  paymentMethodSubmitted: state.checkoutReducer.paymentMethodSubmitted,
+  shippingFormSubmitted: state.checkoutReducer.shippingFormSubmitted,
 });
 
 const mapDispatchToProps = dispatch => (
   {
-    goToCheckout: () => { dispatch(goToCheckout()); },
+    setCheckoutView: (value) => { dispatch(setCheckoutView(value)); },
     submitPromoCode: (code) => { dispatch(submitPromoCode(code)); },
     submitPostalCode: (code) => { dispatch(submitPostalCode(code)); },
-    togglePickupInStore: () => { dispatch(togglePickupInStore()); },
+    setPickupInStore: (boolValue) => { dispatch(setPickupInStore(boolValue)); },
+    submitShippingForm: (value) => { dispatch(submitShippingForm(value)); },
   }
 );
 
