@@ -283,7 +283,6 @@ class EmailForm extends React.PureComponent {
             duration={heightAnimationTime}
             height={height}
             animateOpacity
-            onAnimationStart={() => this.onAnimateEnd()}
             easing="linear"
           >
             <React.Fragment>
