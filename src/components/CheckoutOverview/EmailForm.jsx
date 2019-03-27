@@ -94,7 +94,7 @@ class EmailForm extends React.PureComponent {
   }
 
   onContinueAsGuestClick() {
-    const { emailIsValid, emailInputValue } = this.state; //eslint-disable-line
+    const { emailIsValid, emailInputValue } = this.state;
     const { submitEmail, setEditingFormRef, heightAnimationTime } = this.props;
     if (!emailInputValue) {
       this.setState({
@@ -103,21 +103,15 @@ class EmailForm extends React.PureComponent {
     }
     if (!emailIsValid) return;
     submitEmail(emailInputValue);
-    // submitEmail('test@test.com');
     this.setState({
       createPasswordView: false,
     });
     setEditingFormRef(null);
     // top padding of checkoutcontainer is 55px;
-    // setting delay so the next form has time to epxand
     scroll.scrollTo(55, {
       duration: heightAnimationTime,
       containerId: 'checkout-container',
     });
-  }
-
-  onAnimateEnd() {
-
   }
 
   onSaveAndContinueClick() {
@@ -190,7 +184,7 @@ class EmailForm extends React.PureComponent {
 
   renderAccountOptions() {
     const { emailInputValue } = this.state;
-    const hiddenClass = !emailInputValue ? '' : ''; // Hidden u prvom
+    const hiddenClass = !emailInputValue ? 'Hidden' : '';
     return (
       <div className={`Account-options-container ${hiddenClass}`}>
         <p className="Account-options-text">

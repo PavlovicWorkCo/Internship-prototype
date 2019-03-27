@@ -51,19 +51,12 @@ class ShippingForm extends React.PureComponent {
     const {
       submitShippingForm, setEditingFormRef, submitPostalCode, heightAnimationTime,
     } = this.props;
-    // submitPostalCode('11000');
-    // submitShippingForm({
-    //   shippingCountry: 'Canada', shippingProvince: 'srb', shippingCity: 'bg',
-    // shippingAddress: 'cara dus 23', phoneNumber: '2323123', fistName: 'pera',
-    // lastName: 'peric', shippingPostalCode: '11000',
-    // });
     if (this.isInformationIncomplete()) {
       this.setState({
         informationIsIncomplete: true,
       });
       return;
     }
-    //
     this.setState({
       informationIsIncomplete: false,
     });

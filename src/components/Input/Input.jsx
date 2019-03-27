@@ -16,7 +16,7 @@ class Input extends React.PureComponent {
     this.state = {
       inputWarningText: null,
       inputAcceptable: null,
-      inputCheckerType: props.inputCheckerType, // eslint-disable-line object-shorthand
+      inputCheckerType: props.inputCheckerType,
       inputValue: props.defaultValue,
     };
     this.inputRef = React.createRef();

@@ -11,9 +11,6 @@ import './ShippingFormContainer.css';
 class ShippingFormContainer extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-
-    };
     this.formRef = React.createRef();
   }
 
@@ -22,7 +19,7 @@ class ShippingFormContainer extends React.PureComponent {
     setEditingFormRef(this.formRef);
   }
 
-  scrollToNextForm() {
+  scrollToForm() {
     const { editingFormRef, heightAnimationTime } = this.props;
     if (editingFormRef === this.formRef.current) {
       // top padding of checkoutcontainer is 55px + EmailForm height is 130;
@@ -114,7 +111,7 @@ class ShippingFormContainer extends React.PureComponent {
             duration={heightAnimationTime}
             height={contentHeight}
             animateOpacity
-            onAnimationStart={() => this.scrollToNextForm()}
+            onAnimationStart={() => this.scrollToForm()}
           >
             <React.Fragment>
               {this.renderShippingOptionsButtons()}
