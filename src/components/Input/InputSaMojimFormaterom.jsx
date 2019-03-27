@@ -3,7 +3,6 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import React from 'react';
 import ReactSVG from 'react-svg';
-import InputMask from 'react-input-mask';
 import isValidIcon from '../../assets/icons/isValidInput.svg';
 import notValidIcon from '../../assets/icons/notValidInput.svg';
 import Validator from '../../helper/Validator';
@@ -16,8 +15,8 @@ class Input extends React.PureComponent {
     this.state = {
       inputWarningText: null,
       inputAcceptable: null,
-      inputCheckerType: props.inputCheckerType,
-      inputValue: props.defaultValue,
+      inputCheckerType: props.inputCheckerType, // eslint-disable-line object-shorthand
+      inputValue: null,
     };
     this.inputRef = React.createRef();
   }
@@ -33,8 +32,6 @@ class Input extends React.PureComponent {
     const { onFocus } = this.props;
     this.setState({
       inputIsFocused: true,
-      inputWarningText: null,
-      inputAcceptable: null,
     });
     if (!onFocus) return;
     onFocus(e);
@@ -55,6 +52,12 @@ class Input extends React.PureComponent {
     this.setInputValue(e.target.value);
     if (!onChange) return;
     onChange(e);
+  }
+
+  onInputKeyDown(e) {
+    const { onKeyDown } = this.props;
+    if (!onKeyDown) return;
+    onKeyDown(e);
   }
 
   setEmailAsInvalid() {
@@ -104,20 +107,13 @@ class Input extends React.PureComponent {
     });
   }
 
-  passwordToggle(e) {
+  passwordToggle() {
     const { inputValue } = this.state;
-    e.preventDefault();
     if (!inputValue) return;
     if (this.inputRef.current.type === 'text') {
       this.inputRef.current.type = 'password';
-      this.setState({
-        passwordVisible: false,
-      });
     } else {
       this.inputRef.current.type = 'text';
-      this.setState({
-        passwordVisible: true,
-      });
     }
   }
 
@@ -136,11 +132,10 @@ class Input extends React.PureComponent {
       toggleIconClassName,
       inputID,
       emailIsEmptyWarning,
-      defaultValue,
+      defaultValue, // eslint-disable-line
       inputLabelText,
       passwordsDontMatchWarning,
-      passwordIsInvalid,
-      inputMask,
+      maxLength,
     } = this.props;
 
     const {
@@ -148,7 +143,6 @@ class Input extends React.PureComponent {
       inputAcceptable,
       inputWarningText,
       inputIsFocused,
-      passwordVisible,
     } = this.state;
 
     const toggleIconClass = classNames({
@@ -161,11 +155,6 @@ class Input extends React.PureComponent {
       Focused: inputIsFocused,
     });
 
-    const togglePasswordClass = classNames({
-      [`${toggleButtonClassName}`]: true,
-      'Crossed-out': inputValue && togglePasswordVisibility && passwordVisible,
-    });
-
     return (
       <div className={containerClassName}>
         {inputLabeled && inputValue && inputLabelText
@@ -173,41 +162,25 @@ class Input extends React.PureComponent {
         {inputLabeled && inputValue && !inputLabelText
           && <p className={inputLabelClassName}>{placeholderText}</p>}
         <div className="Input-inner-container">
-          {((inputCheckerType && inputAcceptable === true) || passwordsDontMatchWarning === false || passwordIsInvalid === false) && <img alt="" className="Valid-input-icon" src={isValidIcon} />}
+          {((inputCheckerType && inputAcceptable === true) || passwordsDontMatchWarning === false) && <img alt="" className="Valid-input-icon" src={isValidIcon} />}
           {((inputCheckerType && inputAcceptable === false) || passwordsDontMatchWarning) && <img alt="" className="Not-valid-input-icon" src={notValidIcon} />}
-          {inputMask ? (
-            <InputMask
-              id={inputID}
-              type={inputType}
-              name={inputName}
-              placeholder={placeholderText}
-              className={inputClass}
-              onFocus={e => this.onInputFocus(e)}
-              onBlur={e => this.onInputBlur(e)}
-              onChange={e => this.onInputChange(e)}
-              ref={this.inputRef}
-              defaultValue={defaultValue}
-              mask={inputMask}
-              spellCheck={false}
-              maskChar={null}
-            />
-          ) : (
-            <input
-              id={inputID}
-              type={inputType}
-              name={inputName}
-              placeholder={placeholderText}
-              className={inputClass}
-              onFocus={e => this.onInputFocus(e)}
-              onBlur={e => this.onInputBlur(e)}
-              onChange={e => this.onInputChange(e)}
-              ref={this.inputRef}
-              defaultValue={defaultValue}
-              spellCheck={false}
-            />
-          )}
+          <input
+            id={inputID}
+            type={inputType}
+            name={inputName}
+            placeholder={placeholderText}
+            className={inputClass}
+            onFocus={e => this.onInputFocus(e)}
+            onBlur={e => this.onInputBlur(e)}
+            onChange={e => this.onInputChange(e)}
+            ref={this.inputRef}
+            value={inputValue}
+            spellCheck={false}
+            onKeyDown={e => this.onInputKeyDown(e)}
+            maxLength={maxLength}
+          />
           {togglePasswordVisibility && (
-            <button tabIndex={-1} type="button" onMouseDown={e => this.passwordToggle(e)} className={togglePasswordClass}>
+            <button type="button" onClick={() => this.passwordToggle()} className={toggleButtonClassName}>
               <ReactSVG src={TogglePasswordIcon} svgClassName={toggleIconClass} />
             </button>
           )}
@@ -236,11 +209,11 @@ Input.defaultProps = {
   onBlur: null,
   inputID: null,
   emailIsEmptyWarning: null,
-  defaultValue: '',
+  defaultValue: null,
   inputLabelText: null,
   passwordsDontMatchWarning: null,
-  passwordIsInvalid: null,
-  inputMask: null,
+  onKeyDown: null,
+  maxLength: null,
 };
 
 Input.propTypes = {
@@ -263,8 +236,8 @@ Input.propTypes = {
   defaultValue: PropTypes.string,
   inputLabelText: PropTypes.string,
   passwordsDontMatchWarning: PropTypes.bool,
-  passwordIsInvalid: PropTypes.bool,
-  inputMask: PropTypes.string,
+  onKeyDown: PropTypes.func,
+  maxLength: PropTypes.number,
 
 };
 

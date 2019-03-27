@@ -1,11 +1,14 @@
 .Bag-labels-container {
-  width: 781px;
+  width: calc(100% - var(--bag_right_margin));
   justify-content: space-between;
   display: flex;
   border-bottom: 1px solid black;
-  font-size: 14px;
   margin-top: 40px;
   padding-bottom: 15px;
+  font-family: Helvetica;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 20px;
 }
 
 .Number-of-items-label {
@@ -15,15 +18,17 @@
 .Bag-item-color-label {
   width: 128px;
   position: relative;
-  right: 25px;
 }
 
 .Bag-item-size-label {
   width: 62px;
+  margin-left: 5px;
 }
 
 .Bag-item-quantity-label {
   margin-left: 10px;
+  position: relative;
+  right: 3px;
   width: 52px;
 }
 
@@ -36,4 +41,5 @@
 
 .Bag-item-price-label {
   margin-left: 15px;
+  width: 35px;
 }

@@ -4,10 +4,9 @@ import BagItem from '../BagItem/BagItem';
 import BagLabelsContainer from '../BagLabelsContainer/BagLabelsContainer';
 import './Bag.css';
 import Button from '../Button/Button';
-import dropdownArrowIcon from '../../assets/icons/dropdownArrow.svg';
 
 const Bag = (props) => {
-  const { bagItemsInfo, deleteBagItem } = props;
+  const { bagItemsInfo, deleteBagItem, setItemQuantity } = props;
   const bagItems = bagItemsInfo.map((bagItem, index) => (
     <BagItem
       key={bagItem.id}
@@ -21,20 +20,13 @@ const Bag = (props) => {
       availableSizes={bagItem.available_sizes}
       deleteBagItem={() => deleteBagItem(index)}
       smallVersion={bagItemsInfo.length > 2}
+      setItemQuantity={quantity => setItemQuantity(quantity, index)}
     />
   ));
 
   return (
-    <div className="Bag-container">
+    <React.Fragment>
       <div className="Bag-navi-container">
-        <a className="Back-to-addition-link" href="/">
-          <img
-            alt=""
-            src={dropdownArrowIcon}
-            className="Back-to-addition-arrow"
-          />
-          ADDITION ELLE
-        </a>
         <div className="Log-in-buttons-container">
           <Button
             className="Transparent-button Log-in-button"
@@ -49,19 +41,23 @@ const Bag = (props) => {
         </div>
       </div>
       <BagLabelsContainer numberOfItems={bagItemsInfo.length} />
-      {bagItems}
-    </div>
+      <div className="Bag-items-container">
+        {bagItems}
+      </div>
+    </React.Fragment>
   );
 };
 
 Bag.defaultProps = {
   bagItemsInfo: null,
   deleteBagItem: null,
+  setItemQuantity: null,
 };
 
 Bag.propTypes = {
   bagItemsInfo: PropTypes.arrayOf(PropTypes.object),
   deleteBagItem: PropTypes.func,
+  setItemQuantity: PropTypes.func,
 };
 
 

@@ -1,0 +1,25 @@
+.Payment-info-warning {
+  color:red;
+  position: absolute;
+  bottom: -20px;
+  font-size: 14px;
+}
+.Card-type-tip {
+  width: 100%;
+  height: 0px;
+  font-size: 12px;
+  position: relative;
+  margin-bottom: 10px;
+  color: gray;
+}
+.Card-type-info {
+  width: 100%;
+  height: 0px;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.Checkout-payment-overview {
+  margin-bottom: 40px;
+}

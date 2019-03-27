@@ -1,0 +1,43 @@
+.Space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.Bill-summary-checkout {
+  width: 100%;
+  transition: top 0.5s, opacity 0.5s;
+  position: absolute;
+  top: 20px;
+  max-height: 0px;
+  max-width: 0px;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.Bill-summary-checkout.Fade-in {
+  top: 0px;
+  opacity: 1;
+  max-width: 100000px;
+  max-height: 100000px;
+  visibility: visible;
+  transition: top 0.5s, opacity 0.5s;
+}
+
+.Bill-summary-checkout.Fade-away {
+  top: 20px;
+  max-height: 0px;
+  max-width: 0px;
+  transition: top 0.5s, opacity 0.5s, max-height 0s linear 0.5s, max-width 0s linear 0.5s, visibility 0s linear 0.5s;
+}
+
+.Checkout-summary-tax,
+.Checkout-summary-shipping,
+.Checkout-summary-total-cost,
+.Checkout-summary-promo-code {
+  padding: 25px 0px;
+  border-bottom: 1px solid var(--bill_summary_transparent_border);
+}
+
+.Checkout-summary-tax>.Space-between.Gst-tax {
+  margin-bottom: 20px;
+}

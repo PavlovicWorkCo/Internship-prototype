@@ -16,7 +16,7 @@ class BagItem extends React.PureComponent {
 
   render() {
     const {
-      itemName, selectedSize, selectedColor, itemPicture, itemQuantity,
+      itemName, selectedSize, selectedColor, itemPicture, itemQuantity, setItemQuantity,
       itemPrice, availableColors, availableSizes, deleteBagItem, smallVersion,
     } = this.props;
 
@@ -73,6 +73,7 @@ class BagItem extends React.PureComponent {
             dropdownOptionsContainerClass="Bag-item-quantity-options-container"
             dropdownArrowIconClass="Dropdown-arrow-bag-item"
             dropdownArrowVisible
+            setInputValue={value => setItemQuantity(value)}
           />
           <p className="Bag-item-price">{itemPrice}</p>
 
@@ -95,6 +96,7 @@ BagItem.defaultProps = {
   selectedColor: null,
   itemPicture: null,
   itemQuantity: null,
+  setItemQuantity: null,
   itemPrice: null,
   availableColors: null,
   availableSizes: null,
@@ -108,6 +110,7 @@ BagItem.propTypes = {
   selectedColor: PropTypes.object,
   itemPicture: PropTypes.string,
   itemQuantity: PropTypes.string,
+  setItemQuantity: PropTypes.func,
   itemPrice: PropTypes.string,
   availableColors: PropTypes.arrayOf(PropTypes.object),
   availableSizes: PropTypes.arrayOf(PropTypes.string),

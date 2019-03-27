@@ -7,16 +7,17 @@
 .Test-button-size>p {
   margin: 0px;
 }
+
 .Disabled-button {
   opacity: 0.2;
 }
 
 .Checkout-button {
   background-color: black;
-}
-
-.Checkout-button-text {
   color: white;
+  font-size: 14px;
+  height: 60px;
+  width: 100%;
 }
 
 .Transparent-button {

@@ -1,19 +1,28 @@
 .Bag-item-outer-container {
   display: inline-flex;
   align-items: center;
+  width: calc(100% - var(--bag_right_margin) + 40px); /* total delete button width is 40px */
+  font-family: Helvetica;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  line-height: 20px;
 }
 
 .Bag-item-inner-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 781px;
+  width: calc(100% - 40px); /* 40px for the bagItem delete button */;
   padding: 17px 0px;
   border-bottom: 1px solid var(--bagitem_bottom_border);;
 }
 
 .Bag-item-inner-container.Many-items-version {
   box-shadow: 0px 4px 2px 0 var(--bagitem_box_shadow);
+}
+
+.Bag-container .Bag-item-outer-container:last-child .Bag-item-inner-container {
+  box-shadow: none;
 }
 
 .Bag-item-picture-and-name-container {
@@ -45,13 +54,22 @@
 }
 
 .Bag-item-name {
-  font-size: 15px;
   margin-left: 20px;
   text-align: left;
 }
 
+.Bag-item-name::first-letter {
+  text-transform: uppercase;
+}
+
 .Bag-item-name.Many-items-version {
   width: 240px;
+}
+
+@media (max-width: 1150px) {
+  .Bag-item-name.Many-items-version {
+       width: 200px;
+    }
 }
 
 .Bag-item-name.Few-items-version {
@@ -159,7 +177,7 @@
 }
 
 .Bag-item-no-size-choice-container {
-  width: 40px;
+  min-width: 40px;
   padding: 0px 10px;
 }
 
@@ -204,13 +222,18 @@
   width: 15px;
 }
 
+.Bag-item-price {
+  width: 35px;
+  text-align: right;
+}
+
 .Bag-item-delete-button {
   display: flex;
   outline: none;
   position: relative;
   margin-left: 20px;
   border: 1px solid var(--transparent);
-  padding: 3px;
+  padding: 4px;
   visibility: hidden;
 }
 
