@@ -17,11 +17,12 @@
   color: black;
   letter-spacing: 0.3px;
   line-height: 20px;
-  transition: opacity 3s;
+  transition: opacity 1s;
 }
 
 .Checkout-form-edit-button.Hidden {
   opacity: 0;
+  transition-duration: 0s;
 }
 
 .Checkout-email-input-container {
