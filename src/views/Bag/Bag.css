@@ -40,7 +40,7 @@
 }
 
 .Bag-wrapper.Checkout-view {
-    transition: transform 0.3s ease-out 0s;
+  transition: transform 0.3s ease-out 0s;
 }
 
 .Checkout-container {
@@ -50,14 +50,14 @@
   padding-top: 55px;
   width: calc(100% - 10% - 50px); /* 100% - padding-right - padding-left */
   padding-right: 10%;
-  overflow-y: scroll;
-  scroll-behavior: smooth;
   padding-left: 50px;
 
 }
 
 .Checkout-view {
   transition: transform 0.3s ease-out 0.2s;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 .Bag-view {

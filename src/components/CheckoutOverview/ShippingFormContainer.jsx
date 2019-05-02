@@ -68,7 +68,7 @@ class ShippingFormContainer extends React.PureComponent {
     const {
       shippingFormSubmitted, isExpanded, editingFormRef, heightAnimationTime, pickupInStore,
     } = this.props;
-    const contentHeight = isExpanded || editingFormRef === this.formRef.current ? 'auto' : 0;
+    const contentHeight = isExpanded || (editingFormRef === this.formRef.current && editingFormRef) ? 'auto' : 0;
 
     const overviewHeight = editingFormRef !== this.formRef.current ? 'auto' : 0;
     const editButtonHidden = editingFormRef === this.formRef.current || isExpanded || !shippingFormSubmitted ? 'Hidden' : '';

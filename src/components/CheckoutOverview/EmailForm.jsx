@@ -258,7 +258,7 @@ class EmailForm extends React.PureComponent {
       loggedInMail, isExpanded, editingFormRef, heightAnimationTime,
     } = this.props;
     const { emailIsEmptyWarning, createPasswordView } = this.state;
-    const height = (isExpanded || editingFormRef === this.formRef.current) ? 'auto' : 0;
+    const height = isExpanded || (editingFormRef === this.formRef.current && editingFormRef) ? 'auto' : 0;
 
     const checkoutEmailOverviewIsVisible = loggedInMail && !isExpanded
       && editingFormRef !== this.formRef.current;

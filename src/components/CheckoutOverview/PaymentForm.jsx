@@ -122,7 +122,7 @@ class PaymentForm extends React.PureComponent {
       informationIsIncomplete, cardNumber, cardType, creditCardNoIsInvalid,
       creditCardExpirationDate, cardNumberInputMask, expirationWarning,
     } = this.state;
-    const formHeight = isExpanded || editingFormRef === this.formRef.current ? 'auto' : 0;
+    const formHeight = isExpanded || (editingFormRef === this.formRef.current && editingFormRef) ? 'auto' : 0;
     const invisibleClass = !cardType ? 'Invisible' : '';
     const overviewHeight = editingFormRef !== this.formRef.current ? 'auto' : 0;
     const editButtonHidden = editingFormRef === this.formRef.current || isExpanded || !paymentMethodSubmitted ? 'Hidden' : '';

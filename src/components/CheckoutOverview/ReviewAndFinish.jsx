@@ -106,9 +106,9 @@ class ReviewAndFinish extends React.PureComponent {
     const {
       isExpanded, editingFormRef, heightAnimationTime, paymentMethodSubmitted,
     } = this.props;
-    const height = (isExpanded || editingFormRef === this.formRef.current) ? 'auto' : 0;
-    const duration = (isExpanded
-      || editingFormRef === this.formRef.current) ? 0 : heightAnimationTime;
+    const height = isExpanded || (editingFormRef === this.formRef.current && editingFormRef) ? 'auto' : 0;
+    const duration = isExpanded || editingFormRef === this.formRef.current
+      ? 0 : heightAnimationTime;
     return (
       <div className="Checkout-review-form-container" ref={this.formRef}>
         <FormLabel formNumber="4" formLabel="Review and finish" />
