@@ -1,3 +1,8 @@
+.Checkout-button.Test-button-size {
+  width: 150px;
+  height: 30px;
+  border-color: transparent;
+}
 .Test-button-size {
   width: 150px;
   height: 30px;
