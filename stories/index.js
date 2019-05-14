@@ -51,7 +51,7 @@ storiesOf('Input', module)
     <Input
       containerClassName="Storybook-input-size"
       inputLabeled
-      inputLabelClassName="Standard-input-label"
+      inputLabelClassName="Standard-input-label Storybook"
       placeholderText="Address"
       inputClassName="Default-input Test-standard-input"
     />

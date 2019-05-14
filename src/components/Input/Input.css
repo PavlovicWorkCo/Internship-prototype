@@ -53,6 +53,10 @@
   line-height: 22px;
 }
 
+.Storybook.Standard-input-label {
+  top: -20px;
+}
+
 
 .Input-warning-text {
   margin: 0px;
